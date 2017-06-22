@@ -1,0 +1,26 @@
+EZ Kings Marketplace
+
+Website front-end
+    layout
+    Login
+    Register
+    about
+    marketplace
+    contact us 
+    
+    
+Website hosting, connecting domain, database setup ~ 1 Day
+    Github
+    Heroku
+
+Mobile optimization ~ 0.5 Day
+Authoring, editing and viewing hokey cards in marketplace,  ~ 1.5 Day
+Filtered search of cards in marketplace ~ 1 Day
+
+Shopping cart, PayPal payments integration ~ 1 Day
+SEO optimization ~ 1.5 Day
+Email notifications to users with updates about market changes ~ 0.5 Day
+Bug testings and QA~ 2 days
+
+
+UI design and styling
