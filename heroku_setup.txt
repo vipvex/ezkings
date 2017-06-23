@@ -1,0 +1,6 @@
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+heroku
+
+cd ~/workspace/hello-rails
+heroku apps:create    
+git push heroku master
