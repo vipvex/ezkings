@@ -1,0 +1,90 @@
+.ui.grid.full-height
+  .four.wide.column.full-height
+    .ui.segment.full-height
+      .ui.form
+        .ui.search
+          .ui.icon.input.fluid
+            %input.prompt{:placeholder => "Search...", :type => "text"}/
+            %i.search.icon
+          .results
+        %h5 Attributes
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        %h5 Attributes
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+            %h5 Attributes
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+        .inline.field
+          .ui.checkbox
+            %input.hidden{:tabindex => "0", :type => "checkbox"}/
+            %label Checkbox
+
+      
+      
+  .twelve.wide.column.full-height
+    .ui.segment.marketplace.full-height
+      .ui.form
+        .fields.right.aligned
+          .field.inline.four.wide
+            %label Sort
+            .ui.selection.dropdown
+              %input{:name => "gender", :type => "hidden"}/
+              %i.dropdown.icon
+              .default.text View
+              .menu
+                .item{"data-value" => "1"} Newest
+                .item{"data-value" => "0"} Price LOW
+                .item{"data-value" => "0"} Price Hight
+          .field.inline.four.wide
+            %label View
+            .ui.selection.dropdown
+              %input{:name => "gender", :type => "hidden"}/
+              %i.dropdown.icon
+              .default.text View
+              .menu
+                .item{"data-value" => "1"} List
+                .item{"data-value" => "0"} Thumb
+                .item{"data-value" => "0"} Text
+      .ui.link.four.cards.stackable
+        - @cards.each do |card|
+          = render 'card', card: card

@@ -1,0 +1,30 @@
+.ui.menu
+  .ui.container
+    %a.header.item{:href => marketplace_path}
+      = image_tag 'logo.jpg', class: 'logo'
+      EZ Kings Cards
+    .ui.item
+      = link_to('Home', "#", class: '')
+    .ui.item 
+      = link_to('Marketplace', marketplace_path, class: '')
+    .ui.dropdown.simple.item
+      More
+      %i.dropdown.icon
+      .menu
+        = link_to('Checklist', "", class: 'item')
+        = link_to('About Us', "", class: 'item')
+        = link_to('About Cards', "", class: 'item')
+        = link_to('Contact Us', "", class: 'item')
+    - if current_user
+      .ui.dropdown.simple.right.item
+        = current_user.email
+        %i.dropdown.icon
+        .menu
+          %a.item{:href => "#"} Setting
+          = link_to('Logout', destroy_user_session_path, method: :delete, class: 'item')
+    - else
+      .right.menu
+        .ui.item
+          = link_to('Log-in', new_user_session_path, class: 'ui primary button')
+        .ui.item
+          = link_to('Sign Up', new_user_registration_path, class: 'ui green button')

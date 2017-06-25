@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :cards
+  root 'marketplace#index'
+  
+  devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
+  get 'marketplace/index', as: :marketplace
+
+  get 'marketplace/search'
+
+  get "/p/*url", to: "pages#show"
+  resources :pages
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

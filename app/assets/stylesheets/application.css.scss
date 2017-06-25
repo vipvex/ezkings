@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+@import "semantic-ui";
+
+
+html, body, .ui.grid {
+  height: 100%;
+}
+
+.full-height { 
+  height: 100%;
+}
+
+.marketplace {
+  overflow: scroll;
+}
+
+.card {
+  .image {
+    img {
+      //width: auto;
+      //max-height: 200px;
+    }
+    //
+  }
+}
