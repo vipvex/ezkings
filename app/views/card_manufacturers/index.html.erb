@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Card Manufacturers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @card_manufacturers.each do |card_manufacturer| %>
+      <tr>
+        <td><%= card_manufacturer.name %></td>
+        <td><%= link_to 'Show', card_manufacturer %></td>
+        <td><%= link_to 'Edit', edit_card_manufacturer_path(card_manufacturer) %></td>
+        <td><%= link_to 'Destroy', card_manufacturer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Card manufacturer', new_card_manufacturer_path %>

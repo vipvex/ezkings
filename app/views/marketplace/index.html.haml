@@ -8,57 +8,30 @@
             %i.search.icon
           .results
         %h5 Attributes
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        %h5 Attributes
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-            %h5 Attributes
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-        .inline.field
-          .ui.checkbox
-            %input.hidden{:tabindex => "0", :type => "checkbox"}/
-            %label Checkbox
-
+        - @attributes.each do |attribute|
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label #{attribute.name} (143)
+        %h5 Players
+        - @players.each do |player|
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label #{player.name} (143)
+        %h5 Teams
+        - @teams.each do |team|
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label #{team.name} (143)
+        %h5 Manufactureres
+        - @card_manufactureres.each do |card_manufacturer|
+          .inline.field
+            .ui.checkbox
+              %input.hidden{:tabindex => "0", :type => "checkbox"}/
+              %label #{card_manufacturer.name} (143)
+    
       
       
   .twelve.wide.column.full-height

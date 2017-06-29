@@ -1,0 +1,21 @@
+%h1.header Cart
+.ui.divided.items
+  - @cart.cart_items.each do |item|
+    .item
+      .image
+        = image_tag('card_placeholder.jpg', class: 'img', style: 'max-width: 100px')
+      .content
+        %a.header= item.item.name
+        .meta
+          %span.cinema New | 5 Available
+        .description
+          %p
+        .extra
+          = link_to remove_cart_item_path(cart_item_id: item.item.id), method: :delete, class: 'ui right floated button', data: { confirm: 'Are you sure?',  } do |c|
+            Remove
+            %i.right.chevron.icon
+          /.ui.label Remove
+
+  
+%h2.header Subtotal (#{@cart.cart_items.count}): $#{@cart.total} 
+%button.ui.button.blue Proceed to checkout

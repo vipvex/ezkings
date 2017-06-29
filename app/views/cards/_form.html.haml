@@ -1,0 +1,44 @@
+.ui.form
+  = form_for(@card) do |f|
+    - if @card.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@card.errors.count, "error")
+          prohibited this card from being saved:
+        %ul
+          - @card.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = f.label :name
+      %br/
+      = f.text_field :name
+    .field
+      = f.label :year
+      %br/
+      = f.date_select :year
+    .field
+      = f.label :description
+      %br/
+      = f.text_area :description
+    .field
+      = f.label :price
+      %br/
+      = f.number_field :price
+    %h5 Attributes
+    = select_tag 'card[card_attributes_ids]', options_for_select( @attributes.map { |a| [a.name, a.id] }, @card.card_attributes.map { |c| c.attribute_id } ), :class => 'ui fluid dropdown', :multiple => true
+    %h5 Players
+    = select_tag 'card[player_ids]', options_for_select( @players.map { |p| [p.name, p.id] }, @card.card_players.map { |c| c.player_id } ), :class => 'ui fluid dropdown', :multiple => true
+    %h5 Teams
+    = select_tag 'card[team_ids]', options_for_select( @teams.map { |p| [p.name, p.id] }, @card.card_teams.map { |c| c.team_id } ), :class => 'ui fluid dropdown', :multiple => true
+
+    %h5 Card Manufactureres
+    = select_tag 'card[card_manufacturer_ids]', options_for_select( @card_manufacturers.map { |m| [m.name, m.id] }, @card.card_manufacturers.map { |c| c.id } ), :class => 'ui fluid dropdown', :multiple => true
+
+    .actions
+      = f.submit
+  
+  
+:javascript
+  $(document).ready( function() {
+    $('.ui.dropdown').dropdown();
+  });

@@ -1,0 +1,1 @@
+json.array! @card_manufacturers, partial: 'card_manufacturers/card_manufacturer', as: :card_manufacturer

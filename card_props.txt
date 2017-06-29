@@ -1,0 +1,33 @@
+Card
+  Name
+  
+
+
+Attributes
+  Acetate
+  Autograph
+  Inserts
+  Memorabilia
+  Parallez
+  Rokie
+  Serial Numbered
+
+Card Manufacturer
+  Fleer
+  Panini
+  
+Season
+  2017-18
+  2016-17
+  2015-16
+  
+Team
+  Los Angeles Kings
+  
+Player
+  John Whick
+  
+Sold Out
+  Ignore
+  Include
+  Onyl Sold out

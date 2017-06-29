@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
+  get 'cart/cart'
+
   resources :cards
+  resources :attributes
+  resources :teams
+  resources :players
+  resources :card_manufacturers
+  
+  
   root 'marketplace#index'
   
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
   get 'marketplace/index', as: :marketplace
 
   get 'marketplace/search'
+  get '/cart', to: 'cart#cart', as: :cart
+  
+  delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
+  post '/cart/add', :to => 'cart#add_item', as: :add_cart_item
+
 
   get "/p/*url", to: "pages#show"
   resources :pages

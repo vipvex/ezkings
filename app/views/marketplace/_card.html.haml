@@ -14,5 +14,6 @@
     .ui.two.buttons
       = link_to card, class: 'ui basic blue button' do |c|
         View
-      .ui.basic.green.button Buy
+      = link_to add_cart_item_path(card_id: card.id), method: :post, class: 'ui basic green button' do |c|
+        Buy
       

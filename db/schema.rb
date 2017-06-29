@@ -11,7 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625184155) do
+ActiveRecord::Schema.define(version: 20170626212406) do
+
+  create_table "attributes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "card_attributes", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "attribute_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "card_attributes", ["attribute_id"], name: "index_card_attributes_on_attribute_id"
+  add_index "card_attributes", ["card_id"], name: "index_card_attributes_on_card_id"
+
+  create_table "card_manufacturers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "card_manufacturers_cards", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "card_manufacturers_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "card_manufacturers_cards", ["card_id"], name: "index_card_manufacturers_cards_on_card_id"
+  add_index "card_manufacturers_cards", ["card_manufacturers_id"], name: "index_card_manufacturers_cards_on_card_manufacturers_id"
+
+  create_table "card_players", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "card_players", ["card_id"], name: "index_card_players_on_card_id"
+  add_index "card_players", ["player_id"], name: "index_card_players_on_player_id"
+
+  create_table "card_teams", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "card_teams", ["card_id"], name: "index_card_teams_on_card_id"
+  add_index "card_teams", ["team_id"], name: "index_card_teams_on_team_id"
 
   create_table "cards", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +72,18 @@ ActiveRecord::Schema.define(version: 20170625184155) do
     t.integer  "price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "price_cents",    default: 0,     null: false
+    t.string   "price_currency", default: "USD", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "carts", force: :cascade do |t|
@@ -53,6 +117,18 @@ ActiveRecord::Schema.define(version: 20170625184155) do
     t.string   "url"
     t.text     "content"
     t.string   "layout"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

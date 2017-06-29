@@ -15,10 +15,19 @@ class CardsController < ApplicationController
   # GET /cards/new
   def new
     @card = Card.new
+        
+    @attributes = Attribute.all
+    @players = Player.all
+    @teams = Team.all
+    @card_manufacturers = CardManufacturer.all
   end
 
   # GET /cards/1/edit
   def edit
+    @attributes = Attribute.all
+    @players = Player.all
+    @teams = Team.all
+    @card_manufacturers = CardManufacturer.all
   end
 
   # POST /cards
@@ -28,6 +37,10 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
+        
+        #@card.card_players.create(card_params[:player_ids].collect { |id| { card_id: @card.id, player_id: id.to_i } } )
+
+        
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
@@ -69,6 +82,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:name, :year, :description, :price)
+      params.require(:card).permit(:name, :year, :description, :price, :team_ids => [], :c_attribute_ids => [], :card_manufacturer_ids => [], :player_ids => [])
     end
 end
