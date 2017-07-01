@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626212406) do
+ActiveRecord::Schema.define(version: 20170629033624) do
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name"
@@ -29,21 +29,21 @@ ActiveRecord::Schema.define(version: 20170626212406) do
   add_index "card_attributes", ["attribute_id"], name: "index_card_attributes_on_attribute_id"
   add_index "card_attributes", ["card_id"], name: "index_card_attributes_on_card_id"
 
+  create_table "card_manufacturer_cards", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "card_manufacturer_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "card_manufacturer_cards", ["card_id"], name: "index_card_manufacturer_cards_on_card_id"
+  add_index "card_manufacturer_cards", ["card_manufacturer_id"], name: "index_card_manufacturer_cards_on_card_manufacturer_id"
+
   create_table "card_manufacturers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "card_manufacturers_cards", force: :cascade do |t|
-    t.integer  "card_id"
-    t.integer  "card_manufacturers_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "card_manufacturers_cards", ["card_id"], name: "index_card_manufacturers_cards_on_card_id"
-  add_index "card_manufacturers_cards", ["card_manufacturers_id"], name: "index_card_manufacturers_cards_on_card_manufacturers_id"
 
   create_table "card_players", force: :cascade do |t|
     t.integer  "card_id"
@@ -67,11 +67,14 @@ ActiveRecord::Schema.define(version: 20170626212406) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "name"
-    t.date     "year"
+    t.integer  "year"
     t.text     "description"
     t.integer  "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "front_image_url"
+    t.string   "back_image_url"
+    t.integer  "available"
   end
 
   create_table "cart_items", force: :cascade do |t|

@@ -1,4 +1,4 @@
-.ui.grid.full-height
+.ui.grid.full-height.left-right-padding
   .four.wide.column.full-height
     .ui.segment.full-height
       .ui.form
@@ -7,31 +7,77 @@
             %input.prompt{:placeholder => "Search...", :type => "text"}/
             %i.search.icon
           .results
-        %h5 Attributes
-        - @attributes.each do |attribute|
-          .inline.field
-            .ui.checkbox
-              %input.hidden{:tabindex => "0", :type => "checkbox"}/
-              %label #{attribute.name} (143)
-        %h5 Players
-        - @players.each do |player|
-          .inline.field
-            .ui.checkbox
-              %input.hidden{:tabindex => "0", :type => "checkbox"}/
-              %label #{player.name} (143)
-        %h5 Teams
-        - @teams.each do |team|
-          .inline.field
-            .ui.checkbox
-              %input.hidden{:tabindex => "0", :type => "checkbox"}/
-              %label #{team.name} (143)
-        %h5 Manufactureres
-        - @card_manufactureres.each do |card_manufacturer|
-          .inline.field
-            .ui.checkbox
-              %input.hidden{:tabindex => "0", :type => "checkbox"}/
-              %label #{card_manufacturer.name} (143)
-    
+      %h5 Attributes #{@search_params[:attribute_ids]} #{@cards.count}
+      - @attributes.each do |attribute|
+        - checked = @search_params[:attribute_ids] && @search_params[:attribute_ids].include?(attribute.id.to_s)
+        .inline.field.attributes
+          .ui.checkbox{ value: attribute.id, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "checkbox", :checked => "checked" }
+            - else
+              %input{:type => "checkbox" }
+            %label #{attribute.name} (#{attribute.card_attributes.where(card_id: @cards.pluck(:id)).count})
+      %h5 Players #{@search_params[:player_ids]}
+      - @players.each do |player|
+        - checked = @search_params[:player_ids] && @search_params[:player_ids].include?(player.id.to_s)
+        .inline.field.players
+          .ui.checkbox{ value: player.id, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "checkbox", :checked => "checked" }
+            - else
+              %input{:type => "checkbox" }
+            %label #{player.name} (#{player.card_players.where(card_id: @cards.pluck(:id)).count})
+      %h5 Teams #{@search_params[:team_ids]}
+      - @teams.each do |team|
+        - checked = @search_params[:team_ids] && @search_params[:team_ids].include?(team.id.to_s)
+        .inline.field.teams
+          .ui.checkbox{ value: team.id, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "checkbox", :checked => "checked" }
+            - else
+              %input{:type => "checkbox" }
+            %label #{team.name} (#{team.card_teams.where(card_id: @cards.pluck(:id)).count})
+      %h5 Manufactureres
+      - @card_manufacturers.each do |card_manufacturer|
+        - checked = @search_params[:card_manufacturer_ids] && @search_params[:card_manufacturer_ids].include?(card_manufacturer.id.to_s)
+        .inline.field.card-manufacturers
+          .ui.checkbox{ value: card_manufacturer.id, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "checkbox", :checked => "checked" }
+            - else
+              %input{:type => "checkbox" }
+            %label #{card_manufacturer.name} (#{card_manufacturer.card_manufacturer_cards.where(card_id: @cards.pluck(:id)).count})
+      %h5 Seasons
+      - @seasons.each do |season|
+        - checked = @search_params[:seasons] && @search_params[:seasons].include?(season.to_s)
+        .inline.field.seasons
+          .ui.checkbox{ value: season, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "checkbox", :checked => "checked" }
+            - else
+              %input{:type => "checkbox" }
+            %label #{season}-#{(season + 1)} (#{@cards.where(year: season).count})
+      %h5 Sold #{@search_params[:available_options]}
+      - @available_options.each do |available_option|
+        - checked = @search_params[:available_options] && @search_params[:available_options].include?(available_option.to_s)
+        .inline.field.available-options
+          .ui.radio.checkbox{ value: available_option, class: ('checked' if checked) }
+            - if checked
+              %input{:type => "radio", :name => "available-options", :checked => "checked" }
+            - else
+              %input{:type => "radio", :name => "available-options" }
+            %label #{available_option.humanize}
+            
+      %h5 Price #{@search_params[:price]}
+      .ui.form
+        .field
+          .three.fields
+            .field
+              = number_field_tag 'price_min', @search_params[:price_min], placeholder: 'min', id: 'price-min'
+            .field
+              = number_field_tag 'price_max', @search_params[:price_max], placeholder: 'max', id: 'price-max'
+            .field
+              .ui.button.blue.fluid#price-search Search
       
       
   .twelve.wide.column.full-height
@@ -41,13 +87,14 @@
           .field.inline.four.wide
             %label Sort
             .ui.selection.dropdown
-              %input{:name => "gender", :type => "hidden"}/
+              %input{:name => "sort", :type => "hidden"}/
               %i.dropdown.icon
               .default.text View
               .menu
-                .item{"data-value" => "1"} Newest
-                .item{"data-value" => "0"} Price LOW
-                .item{"data-value" => "0"} Price Hight
+                .item{"data-value" => "1"} Newest to Oldest
+                .item{"data-value" => "1"} Oldest to Newest
+                .item{"data-value" => "0"} Price: Low to High
+                .item{"data-value" => "0"} Price: High to Low
           .field.inline.four.wide
             %label View
             .ui.selection.dropdown
@@ -58,6 +105,49 @@
                 .item{"data-value" => "1"} List
                 .item{"data-value" => "0"} Thumb
                 .item{"data-value" => "0"} Text
+          .field.inline.four.wide
+            %label Per Page
+            .ui.selection.dropdown
+              %input{:name => "gender", :type => "hidden"}/
+              %i.dropdown.icon
+              .default.text View
+              .menu
+                .item{"data-value" => "1"} 25
+                .item{"data-value" => "0"} 50
+                .item{"data-value" => "0"} 100
+                .item{"data-value" => "0"} 200
       .ui.link.four.cards.stackable
         - @cards.each do |card|
           = render 'card', card: card
+          
+          
+:javascript
+  $(document).ready(function(){
+    $('.attributes > .checkbox, .players > .checkbox, .teams > .checkbox, .card-manufacturers > .checkbox, .seasons > .checkbox, .available-options > .checkbox').checkbox().checkbox({
+      onChange: searchMarketplace
+    });
+    $("#price-search").click(searchMarketplace);
+    $('.ui.dropdown').dropdown();
+  });
+  
+  function searchMarketplace(){
+    
+    var card_attribute_ids = $.map($(".attributes > .checked"), function(check) { return $(check).attr("value") } );
+    var card_player_ids = $.map($(".players > .checked"), function(check) { return $(check).attr("value") } );
+    var card_team_ids = $.map($(".teams > .checked"), function(check) { return $(check).attr("value") } );
+    var card_manufacturer_ids = $.map($(".card-manufacturers > .checked"), function(check) { return $(check).attr("value") } );
+    var seasons = $.map($(".seasons > .checked"), function(check) { return $(check).attr("value") } );
+    var available_options = $.map($(".available-options > .checked"), function(check) { return $(check).attr("value") } )[0];
+    var price_min = $("#price-min").val();
+    var price_max = $("#price-max").val();
+    
+    var sort
+    var listing
+    var view
+
+    var params = jQuery.param( { search: { attribute_ids: card_attribute_ids, player_ids: card_player_ids, team_ids: card_team_ids, card_manufacturer_ids: card_manufacturer_ids, seasons: seasons, available_options: available_options, price_min: price_min, price_max: price_max } });
+  
+   
+    window.location.href = "#{marketplace_search_path}" + "?" + params;
+    
+  }

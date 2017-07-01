@@ -1,3 +1,19 @@
-%h1.header= @card.name
-
-%p= @card.description
+%h1.ui.header= @card.name
+.ui.grid
+  .eight.wide.column
+    = image_tag @card.front_image_url, class: 'ui medium image'
+  .eight.wide.column
+    /.ui.label players
+    /.ui.label Label
+    /.ui.label Label
+    
+    %p= @card.description
+    
+    .ui.form
+      = form_for '/new' do |f|
+        .field
+          .two.fields
+            .field
+              = f.select :quantity, options_for_select(0..@card.available)
+            .field
+              = f.submit 'Add To Cart', class: 'ui button blue' 

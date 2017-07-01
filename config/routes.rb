@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :card_manufacturer_cards
+  resources :card_manufacturer_cards
   get 'cart/cart'
 
   resources :cards

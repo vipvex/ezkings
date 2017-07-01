@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Card:</strong>
+  <%= @card_manufacturer_card.card %>
+</p>
+
+<p>
+  <strong>Card manufacturer:</strong>
+  <%= @card_manufacturer_card.card_manufacturer %>
+</p>
+
+<%= link_to 'Edit', edit_card_manufacturer_card_path(@card_manufacturer_card) %> |
+<%= link_to 'Back', card_manufacturer_cards_path %>

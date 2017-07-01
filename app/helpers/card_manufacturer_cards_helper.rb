@@ -1,0 +1,2 @@
+module CardManufacturerCardsHelper
+end

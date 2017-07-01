@@ -55,3 +55,4 @@ gem 'haml'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem "paperclip", "~> 4.1"
 gem 'acts_as_shopping_cart', '~> 0.4.0'
+gem "faker"
