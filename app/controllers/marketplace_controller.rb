@@ -50,10 +50,12 @@ class MarketplaceController < ApplicationController
 
 
                             
-   @attributes = Attribute.all
-    @players = Player.all
-    @teams = Team.all
-    @card_manufacturers = CardManufacturer.all
+    @attributes = Attribute.all
+    @players = search_params[:player_ids] ? Player.where(id: search_params[:player_ids][0]) : Player.all
+    @teams = search_params[:team_ids] ? Team.where(id: search_params[:team_ids][0]) : Team.all
+    @card_manufacturers = search_params[:card_manufacturer_ids] ? CardManufacturer.where(id: search_params[:card_manufacturer_ids][0]) : CardManufacturer.all
+    @seasons = search_params[:seasons] ? [search_params[:seasons][0].to_i] : (2010...Date.today.year).to_a.reverse
+
                                        
     @cards = Card.all if @cards.empty?
     
