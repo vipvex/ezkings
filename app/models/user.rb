@@ -5,4 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_one :cart
+  
+  after_create :create_cart
+  
+  
+  private
+  
+  def create_cart
+    Card.create(user_id: self.id)
+  end
 end

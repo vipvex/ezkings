@@ -1,0 +1,30 @@
+.ui.form.mini
+  .fields
+    .field.inline.three.wide
+      %label Sort
+      .ui.selection.dropdown
+        %input{:name => "sort", :type => "hidden", id: "sort-options", value: @search_params[:sort_options]}/
+        %i.dropdown.icon
+        .default.text Sorting
+        .menu
+          - @sort_options.each do |sort|
+            .item{"data-value" => sort[1]} #{sort[0]}
+    .field.inline.three.wide
+      %label View
+      .ui.selection.dropdown
+        %input{:name => "gender", :type => "hidden", id: 'view-options', value: @search_params[:view_options]}/
+        %i.dropdown.icon
+        .default.text Views
+        .menu
+          - @view_options.each do |view|
+            .item{"data-value" => view} #{view.humanize}
+    .field.inline.four.wide
+      %label Per Page
+      .ui.selection.dropdown
+        %input{:name => "gender", :type => "hidden", id: 'per-page-options', value: @search_params[:per_page_options] || @page_options[@default_page_option]}/
+        %i.dropdown.icon
+        .default.text Pages
+        .menu
+          - @page_options.each do |page|
+            .item{"data-value" => page} #{page}
+          

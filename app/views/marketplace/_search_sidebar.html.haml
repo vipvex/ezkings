@@ -1,0 +1,78 @@
+.ui.segment.full-height
+  .ui.form
+    .ui.search
+      .ui.icon.input.fluid
+        %input.prompt{:placeholder => "Search...", :type => "text"}/
+        %i.search.icon
+      .results
+  %h5 Attributes #{@search_params[:attribute_ids]} #{@cards.count}
+  - @attributes.each do |attribute|
+    - checked = @search_params[:attribute_ids] && @search_params[:attribute_ids].include?(attribute.id.to_s)
+    .inline.field.attributes
+      .ui.checkbox{ value: attribute.id, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "checkbox", :checked => "checked" }
+        - else
+          %input{:type => "checkbox" }
+        %label #{attribute.name} (#{attribute.card_attributes.where(card_id: @cards.pluck(:id)).count})
+  %h5 Players #{@search_params[:player_ids]}
+  - @players.each do |player|
+    - checked = @search_params[:player_ids] && @search_params[:player_ids].include?(player.id.to_s)
+    .inline.field.players
+      .ui.checkbox{ value: player.id, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "checkbox", :checked => "checked" }
+        - else
+          %input{:type => "checkbox" }
+        %label #{player.name} (#{player.card_players.where(card_id: @cards.pluck(:id)).count})
+  %h5 Teams #{@search_params[:team_ids]}
+  - @teams.each do |team|
+    - checked = @search_params[:team_ids] && @search_params[:team_ids].include?(team.id.to_s)
+    .inline.field.teams
+      .ui.checkbox{ value: team.id, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "checkbox", :checked => "checked" }
+        - else
+          %input{:type => "checkbox" }
+        %label #{team.name} (#{team.card_teams.where(card_id: @cards.pluck(:id)).count})
+  %h5 Manufactureres
+  - @card_manufacturers.each do |card_manufacturer|
+    - checked = @search_params[:card_manufacturer_ids] && @search_params[:card_manufacturer_ids].include?(card_manufacturer.id.to_s)
+    .inline.field.card-manufacturers
+      .ui.checkbox{ value: card_manufacturer.id, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "checkbox", :checked => "checked" }
+        - else
+          %input{:type => "checkbox" }
+        %label #{card_manufacturer.name} (#{card_manufacturer.card_manufacturer_cards.where(card_id: @cards.pluck(:id)).count})
+  %h5 Seasons
+  - @seasons.each do |season|
+    - checked = @search_params[:seasons] && @search_params[:seasons].include?(season.to_s)
+    .inline.field.seasons
+      .ui.checkbox{ value: season, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "checkbox", :checked => "checked" }
+        - else
+          %input{:type => "checkbox" }
+        %label #{season}-#{(season + 1)} (#{@cards.where(year: season).count})
+  %h5 Sold #{@search_params[:available_options]}
+  - @available_options.each do |available_option|
+    - checked = @search_params[:available_options] && @search_params[:available_options].include?(available_option.to_s)
+    .inline.field.available-options
+      .ui.radio.checkbox{ value: available_option, class: ('checked' if checked) }
+        - if checked
+          %input{:type => "radio", :name => "available-options", :checked => "checked" }
+        - else
+          %input{:type => "radio", :name => "available-options" }
+        %label #{available_option.humanize}
+        
+  %h5 Price #{@search_params[:price]}
+  .ui.form
+    .field
+      .three.fields
+        .field
+          = number_field_tag 'price_min', @search_params[:price_min], placeholder: 'min', id: 'price-min'
+        .field
+          = number_field_tag 'price_max', @search_params[:price_max], placeholder: 'max', id: 'price-max'
+        .field
+          .ui.button.blue.fluid#price-search Search

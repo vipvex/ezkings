@@ -10,5 +10,4 @@ class Card < ActiveRecord::Base
   has_many :teams, :through => :card_teams
   has_many :players, :through => :card_players
   
-  
 end

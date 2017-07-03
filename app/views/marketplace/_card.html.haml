@@ -4,16 +4,12 @@
   .content
     .header= card.name
     .meta
-      %a New | #{card.available} Available
-    %span.right.floated
-      = card.year
-    %span
-      %i.cost.icon
-      $#{card.price}
-  .extra.content
-    .ui.two.buttons
-      = link_to card, class: 'ui basic blue button' do |c|
-        View
-      = link_to add_cart_item_path(card_id: card.id), method: :post, class: 'ui basic green button' do |c|
-        Buy
-      
+      %span.right.floated.time #{card.year}
+      %span.category #{card.teams.first.name}
+  .ui.two.bottom.attached.buttons
+    = link_to card, class: 'ui button' do |c|
+      %i.unhide.icon
+      View
+    = link_to add_cart_item_path(card_id: card.id), method: :post, class: 'ui primary button' do |c|
+      %i.add.icon
+      Buy $#{card.price}

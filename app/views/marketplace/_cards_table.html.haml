@@ -1,0 +1,16 @@
+%table.ui.celled.padded.table
+  %thead
+    %tr
+      %th.single.line Name
+      %th Player
+      %th Team
+      %th Price
+      %th Quantity
+  %tbody
+    - @cards.each do |card|
+      %tr
+        %td= card.name 
+        %td= card.players.first.name
+        %td= card.teams.first.name 
+        %td= card.price
+        %td= card.available

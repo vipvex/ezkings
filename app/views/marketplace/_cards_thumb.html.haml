@@ -1,0 +1,5 @@
+.ui.six.stackable.cards
+  - @view_cards.each do |card|
+    .card
+      =link_to card, class: 'image' do |c|
+        = image_tag 'card_placeholder.jpg', class: 'ui small image'
