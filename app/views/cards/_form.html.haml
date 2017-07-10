@@ -9,10 +9,10 @@
           - @card.errors.full_messages.each do |message|
             %li= message
     .field
+      .field
+        = f.label :name
+        = f.text_field :name   
       .four.fields
-        .field
-          = f.label :name
-          = f.text_field :name   
         .field
           = f.label :price
           = f.number_field :price
@@ -22,15 +22,25 @@
         .field
           = f.label :available
           = f.number_field :available
+        .field
+          = f.label :sku
+          = f.text_field :sku
+        .field
+          = f.label :serial_number
+          = f.text_field :serial_number
     .field
       .two.fields
         .field
           = f.label :front_image_url
-          = f.text_field :front_image_url   
+          = f.hidden_field :front_image_url
+          = cl_image_upload_tag(:front_image)
+          #front-image-preview
         .field
           = f.label :back_image_url
-          = f.text_field :back_image_url   
-          
+          = f.hidden_field :back_image_url
+          = cl_image_upload_tag(:back_image)
+          #back-image-preview
+        
     .field
       = f.label :description
       = f.text_area :description
@@ -51,7 +61,38 @@
       = f.submit 'Submit', class: 'ui button green'
   
   
+#{cloudinary_js_config}
 :javascript
   $(document).ready( function() {
     $('.ui.dropdown').dropdown();
+
+    if($.fn.cloudinary_fileupload !== undefined) {
+      $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+    }
+  
+    $("input[data-cloudinary-field=front_image]").bind('cloudinarydone', function(e, data) {  
+      $('#front-image-preview').html(
+        $.cloudinary.image(data.result.public_id, 
+          { format: data.result.format, version: data.result.version, 
+            crop: 'fit', width: 150, height: 100 })
+      );    
+      $("#card_front_image_url").val(data.result.public_id);    
+      return true;
+    });
+    
+    $("input[data-cloudinary-field=back_image]").bind('cloudinarydone', function(e, data) {  
+      $('#back-image-preview').html(
+        $.cloudinary.image(data.result.public_id, 
+          { format: data.result.format, version: data.result.version, 
+            crop: 'scale', width: 50 })
+      );    
+      $("#card_back_image_url").val(data.result.public_id);    
+      return true;
+    });
+    
+    $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) { 
+      $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%'); 
+    });
+    
   });
+

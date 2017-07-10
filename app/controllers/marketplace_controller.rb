@@ -9,7 +9,7 @@ class MarketplaceController < ApplicationController
 
     set_vars
     
-    @cards = Card.all
+    @cards = Card.where('available > 0')
     @view_cards = @cards.paginate(:page => params[:page], :per_page => search_params[:per_page_options] || @page_options[@default_page_option])
   end
 
@@ -28,8 +28,8 @@ class MarketplaceController < ApplicationController
     
     q[:year] = search_params[:seasons] if search_params[:seasons]
     
-    q[:available] = (1..100).to_a if search_params[:available_options] == "ignore"
-    q[:available] = 0 if search_params[:available_options] == "only_sold_out"
+    q[:available] = (1..100).to_a if @search_params[:available_options] == "ignore"
+    q[:available] = 0 if @search_params[:available_options] == "only_sold_out"
 
     price_min = search_params[:price_min] != "" ? search_params[:price_min].to_i : 0
     price_max = search_params[:price_max] != "" ? search_params[:price_max].to_i : 100000
@@ -47,7 +47,10 @@ class MarketplaceController < ApplicationController
       @cards = @cards.where(id: card_ids)
       
     end
-
+    
+    # Search for names
+    
+    @cards = @cards.where("name LIKE ?", "%#{@search_params[:search_text]}%") 
 
                             
     @attributes = Attribute.all
@@ -79,6 +82,8 @@ class MarketplaceController < ApplicationController
 
       @available_options = ["ignore", "include", "only_sold_out"]
       
+      @default_available_option = 0
+      
       @sort_options = [["Price: Low to High", "price_low_to_high"],
                        ["Price: High to Low", "price_high_to_low"],
                        ["Newest To Oldest",   "newest_to_oldest"],
@@ -95,9 +100,10 @@ class MarketplaceController < ApplicationController
       @seasons = (2010...Date.today.year).to_a.reverse
       
       @search_params[:view_options] = @view_options[@default_view_option] if search_params[:view_options].nil?
+      @search_params[:available_options] = @available_options[@default_available_option] if search_params[:available_options].nil?
     end
   
     def search_params
-      params.fetch(:search, {}).permit(:per_page_options, :view_options, :available_options, :price_min, :price_max, :sort_options, :listing, :view, :player_ids => [], :team_ids => [], :card_manufacturer_ids => [], :attribute_ids => [], :seasons => [])
+      params.fetch(:search, {}).permit(:search_text, :per_page_options, :view_options, :available_options, :price_min, :price_max, :sort_options, :listing, :view, :player_ids => [], :team_ids => [], :card_manufacturer_ids => [], :attribute_ids => [], :seasons => [])
     end
 end

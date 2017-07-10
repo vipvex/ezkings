@@ -1,15 +1,21 @@
 .card
   =link_to card, class: 'image' do |c|
-    = image_tag 'card_placeholder.jpg', class: 'ui small image'
+    = cl_image_tag card.back_image_url || 'card_placeholder.jpg', class: 'ui small image'
   .content
-    .header= card.name
-    .meta
-      %span.right.floated.time #{card.year}
-      %span.category #{card.teams.first.name}
+    %h5 
+      #{card.name}
+      - unless card.c_attributes.where(name: 'Rookie').empty?
+        %span.ui.label.yellow.mini= "RY"
+    %strong #{card.players.first.name} / 
+    %strong #{card.serial_number}
+    %span.meta.right.floated.time #{card.available} Available
   .ui.two.bottom.attached.buttons
     = link_to card, class: 'ui button' do |c|
       %i.unhide.icon
       View
-    = link_to add_cart_item_path(card_id: card.id), method: :post, class: 'ui primary button' do |c|
-      %i.add.icon
-      Buy $#{card.price}
+    = link_to add_cart_item_path(cart: { card_id: card.id, quantity: 1 } ), method: :post, class: "ui primary button #{'disabled' unless card.available?}" do |c|
+      - if card.available?
+        /%i.add.icon
+        Buy $#{card.price}
+      - else
+        Out of Stock

@@ -1,10 +1,13 @@
-.ui.menu
+.ui.menu.stackable
   .ui.container
-    %a.header.item{:href => marketplace_path}
-      = image_tag 'logo.jpg', class: 'logo'
-      EZ Kings Cards
-    = link_to('Home', "#", class: 'ui item link')
-    = link_to('Marketplace', marketplace_path, class: 'ui item link')
+    %a.item{:href => marketplace_path}
+      = image_tag 'logo.png'
+    = link_to "#", class: 'ui item link' do |f|
+      %i.home.icon
+      Home
+    = link_to marketplace_path, class: 'ui item link' do |f|
+      %i.grid.layout.icon
+      Marketplace
     .ui.dropdown.simple.item
       More
       %i.dropdown.icon
@@ -25,7 +28,7 @@
           = link_to('Log-in', new_user_session_path, class: 'ui primary button')
         .item
           = link_to('Sign Up', new_user_registration_path, class: 'ui green button')
-    .item
+    .ui.item
       = link_to current_user ? cart_path : new_user_session_path do
         %i.icon.shop
         Cart (#{current_user ? current_user.cart.cart_items.count : 0})

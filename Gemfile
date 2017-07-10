@@ -57,3 +57,6 @@ gem "paperclip", "~> 4.1"
 gem 'acts_as_shopping_cart', '~> 0.4.0'
 gem "faker"
 gem 'will_paginate', '~> 3.1.0'
+gem "activemerchant"
+gem 'cloudinary'
+gem 'md_simple_editor'

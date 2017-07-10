@@ -5,17 +5,82 @@
       .image
         = image_tag('card_placeholder.jpg', class: 'img', style: 'max-width: 100px')
       .content
-        %a.header= item.item.name
+        %a.header #{item.item.name} (#{item.quantity})
         .meta
-          %span.cinema New | 5 Available
+          %span #{item.price}
         .description
           %p
+        .ui.form
+        = form_for :cart, url: add_cart_item_path do |f|
+          = f.hidden_field :card_id, value: item.item.id
+          .field
+            = select_tag :quantity, options_for_select(1..item.item.available, item.quantity), { class: 'ui dropdown card-quantity', name: 'cart[quantity]' }
         .extra
-          = link_to remove_cart_item_path(cart_item_id: item.item.id), method: :delete, class: 'ui right floated button', data: { confirm: 'Are you sure?',  } do |c|
+          = link_to remove_cart_item_path(cart: { cart_item_id: item.item.id }), method: :delete, class: 'ui right floated button', data: { confirm: 'Are you sure?' } do |c|
             Remove
             %i.right.chevron.icon
-          /.ui.label Remove
 
   
 %h2.header Subtotal (#{@cart.cart_items.count}): $#{@cart.total} 
-%button.ui.button.blue Proceed to checkout
+/%button.ui.button.blue Proceed to checkout
+
+- unless @cart.empty?
+  #paypal-button
+
+= @cart.total
+= raw @cart.paypal_items
+:javascript
+  $(document).ready(function(){
+  
+    $('.card-quantity').change(function() {
+        this.form.submit();
+    });
+    
+  });
+
+  paypal.Button.render({
+
+        env: 'sandbox', // Or 'sandbox'
+
+        client: {
+            sandbox:    'AcT2KtYH-7KxGimT-GjdXVZCuBCFtsqaFu046APlI4OEGNoUbSrueWzCY49iBpVabKWH2oNSUSGPRtuG',
+            production: 'ARdHtKzj3_UP62cGF7GLjErfKojkRXp_ca08LSCYWjU56In4bqjLHL-6uw86OMpjOQm4hESBdC9I8GI_'
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: #{@cart.total}, currency: 'USD' },
+                            item_list: { 
+                                items: #{raw @cart.paypal_items}
+                            }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+
+                console.log(payment);
+                
+                
+                $.ajax({
+                  type: "POST",
+                  url: "#{purchase_path}",
+                  data: { cart: { cart_id: #{@cart.id} } },
+                  success: function(){
+                    console.log("BOOM!")
+                  }
+                });
+                // The payment is complete!
+                // You can now show a confirmation message to the customer
+            });
+        }
+
+    }, '#paypal-button');

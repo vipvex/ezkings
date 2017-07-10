@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :card_manufacturer_cards
+  #Mercury::Engine.routes
+  resources :checklists
   resources :card_manufacturer_cards
   get 'cart/cart'
+  get 'cart/purchase_complete', as: :purchase_complete
+  post 'cart/purchase', as: :purchase
+  get 'cart/orders', as: :orders
+
 
   resources :cards
   resources :attributes
@@ -9,6 +14,7 @@ Rails.application.routes.draw do
   resources :players
   resources :card_manufacturers
   
+  get 'card/express_checkout', as: :express_checkout
   
   root 'marketplace#index'
   
@@ -19,7 +25,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'cart#cart', as: :cart
   
   delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
-  post '/cart/add', :to => 'cart#add_item', as: :add_cart_item
+  post '/cart/add', :to => 'cart#add_cart_item', as: :add_cart_item
 
 
   get "/p/*url", to: "pages#show"

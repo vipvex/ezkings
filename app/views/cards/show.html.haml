@@ -1,42 +1,45 @@
-.ui.grid
+.ui.grid.stackable
   .eight.wide.column
-    .ui.shape
+    .ui.shape.attached
       .sides
         .active.side
           .ui.image
-            = image_tag @card.front_image_url, class: 'ui medium image'
-            %a.ui.blue.right.ribbon.label
-              %i.exchange.icon
-              Flip
-            %a.ui.blue.right.ribbon.label
-              %i.exchange.icon
-              Zoom
+            = cl_image_tag @card.front_image_url || 'image.png', class: 'ui image'
         .side
           .ui.image
-            = image_tag @card.back_image_url, class: 'ui medium image'
-            %a.ui.blue.right.ribbon.label
-              %i.exchange.icon
-              Flip
+            = cl_image_tag @card.back_image_url || 'image.png', class: 'ui image'
+    .ui.one.bottom.attached.buttons
+      .ui.button.flip
+        %i.exchange.icon
+        Flip
 
   .eight.wide.column
     %h1.ui.header= @card.name
     %p= @card.description
     
     .ui.form
-      = form_for '/new' do |f|
+      = form_for :cart, url: add_cart_item_path do |f|
+        = f.hidden_field :card_id, value: @card.id
         .field
-          .two.fields
-            .field
-              = f.select :quantity, options_for_select(0..@card.available)
-            .field
-              = f.submit 'Add To Cart', class: 'ui button blue' 
+          = f.select :quantity, options_for_select(1..@card.available, 1), {}, { class: 'ui dropdown', id: 'card-quantity' } if @card.available?
+        .field
+          = f.submit 'Add To Cart', class: "ui button blue #{'disabled' unless @card.available?}", id: "add-to-cart"
 
 :javascript
   $(document).ready(function(){
     $('.shape').shape();
-    $('.medium .image').zoom();
+    
+    
+    $('.image').each(function( index, image ) {
+      $(image).zoom();
+    });
+    
+    $('.ui.dropdown').dropdown();
+    
   });
   
-  $(".ribbon").click(function(){
+  $(".flip").click(function(){
     $('.shape').shape('flip back');
+    $('.image').zoom();
   });
+  

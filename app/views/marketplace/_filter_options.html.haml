@@ -1,6 +1,7 @@
-.ui.form.mini
+
+.ui.form
   .fields
-    .field.inline.three.wide
+    .field.inline.six.wide
       %label Sort
       .ui.selection.dropdown
         %input{:name => "sort", :type => "hidden", id: "sort-options", value: @search_params[:sort_options]}/
@@ -9,7 +10,7 @@
         .menu
           - @sort_options.each do |sort|
             .item{"data-value" => sort[1]} #{sort[0]}
-    .field.inline.three.wide
+    .field.inline.six.wide
       %label View
       .ui.selection.dropdown
         %input{:name => "gender", :type => "hidden", id: 'view-options', value: @search_params[:view_options]}/
@@ -18,7 +19,7 @@
         .menu
           - @view_options.each do |view|
             .item{"data-value" => view} #{view.humanize}
-    .field.inline.four.wide
+    .field.inline.six.wide
       %label Per Page
       .ui.selection.dropdown
         %input{:name => "gender", :type => "hidden", id: 'per-page-options', value: @search_params[:per_page_options] || @page_options[@default_page_option]}/

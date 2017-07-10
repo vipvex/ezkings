@@ -4,9 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_one :cart
+  has_many :carts
   
   after_create :create_cart
+  
+  def cart
+    carts.where(purchased: false).first
+  end
   
   
   private

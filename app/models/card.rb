@@ -9,5 +9,9 @@ class Card < ActiveRecord::Base
   has_many :card_manufacturers, :through => :card_manufacturer_cards, class_name: 'CardManufacturer'
   has_many :teams, :through => :card_teams
   has_many :players, :through => :card_players
+
+  def available?
+    self.available > 0
+  end
   
 end

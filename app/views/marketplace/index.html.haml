@@ -1,5 +1,5 @@
-.ui.grid.full-height.left-right-padding
-  .four.wide.column.full-height
+.ui.grid.stackable.left-right-padding
+  .four.wide.column
     = render 'search_sidebar'
       
       
@@ -8,13 +8,14 @@
       
       = render 'filter_options'
 
+      .sixteen.wide.column
       = render 'cards_list' if @search_params[:view_options] == "list" 
       = render 'cards_thumb' if @search_params[:view_options] == "thumb"
       = render 'cards_table' if @search_params[:view_options] == "text"
       = render 'cards_details' if @search_params[:view_options] == "details"
       
       
-      .ui.two.column.centered.grid
+      .ui.two.column.centered
         .digg_pagination
           = will_paginate @view_cards
         
@@ -25,11 +26,19 @@
     $('.attributes > .checkbox, .players > .checkbox, .teams > .checkbox, .card-manufacturers > .checkbox, .seasons > .checkbox, .available-options > .checkbox').checkbox().checkbox({
       onChange: searchMarketplace
     });
+    
+    $("#search-button").click(searchMarketplace);
     $("#price-search").click(searchMarketplace);
     $("#sort-options").change(searchMarketplace);
     $("#view-options").change(searchMarketplace);
     $("#per-page-options").change(searchMarketplace);
     $('.ui.dropdown').dropdown();
+    
+    $("#search-text").on('keyup', function (e) {
+        if (e.keyCode == 13) {
+            searchMarketplace();
+        }
+    });
   });
   
   function searchMarketplace(){
@@ -43,12 +52,13 @@
     var price_min = $("#price-min").val();
     var price_max = $("#price-max").val();
     
+    var search_text = $("#search-text").val();
     var sort_options = $("#sort-options").val();
     var view_options = $("#view-options").val();
     var per_page_options = $("#per-page-options").val();
     
 
-    var params = jQuery.param( { search: { sort_options: sort_options, view_options: view_options, per_page_options: per_page_options, attribute_ids: card_attribute_ids, player_ids: card_player_ids, team_ids: card_team_ids, card_manufacturer_ids: card_manufacturer_ids, seasons: seasons, available_options: available_options, price_min: price_min, price_max: price_max } });
+    var params = jQuery.param( { search: { search_text: search_text, sort_options: sort_options, view_options: view_options, per_page_options: per_page_options, attribute_ids: card_attribute_ids, player_ids: card_player_ids, team_ids: card_team_ids, card_manufacturer_ids: card_manufacturer_ids, seasons: seasons, available_options: available_options, price_min: price_min, price_max: price_max } });
   
    
     window.location.href = "#{marketplace_search_path}" + "?" + params;

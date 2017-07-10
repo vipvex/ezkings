@@ -1,11 +1,14 @@
 .ui.segment.full-height
-  .ui.form
+  %form.ui.form
     .ui.search
-      .ui.icon.input.fluid
-        %input.prompt{:placeholder => "Search...", :type => "text"}/
-        %i.search.icon
-      .results
-  %h5 Attributes #{@search_params[:attribute_ids]} #{@cards.count}
+      .fields
+        .ten.wide.field
+          .ui.icon.input.fluid
+            %input.prompt#search-text{:placeholder => "Search...", :type => "text", :value => @search_params[:search_text]}/
+            %i.search.icon
+        .six.wide.field
+          %button.ui.button.fluid.blue#search-button Search!
+  %h5 Attributes
   - @attributes.each do |attribute|
     - checked = @search_params[:attribute_ids] && @search_params[:attribute_ids].include?(attribute.id.to_s)
     .inline.field.attributes
@@ -15,7 +18,7 @@
         - else
           %input{:type => "checkbox" }
         %label #{attribute.name} (#{attribute.card_attributes.where(card_id: @cards.pluck(:id)).count})
-  %h5 Players #{@search_params[:player_ids]}
+  %h5 Players
   - @players.each do |player|
     - checked = @search_params[:player_ids] && @search_params[:player_ids].include?(player.id.to_s)
     .inline.field.players
@@ -25,7 +28,7 @@
         - else
           %input{:type => "checkbox" }
         %label #{player.name} (#{player.card_players.where(card_id: @cards.pluck(:id)).count})
-  %h5 Teams #{@search_params[:team_ids]}
+  %h5 Teams
   - @teams.each do |team|
     - checked = @search_params[:team_ids] && @search_params[:team_ids].include?(team.id.to_s)
     .inline.field.teams
@@ -55,7 +58,7 @@
         - else
           %input{:type => "checkbox" }
         %label #{season}-#{(season + 1)} (#{@cards.where(year: season).count})
-  %h5 Sold #{@search_params[:available_options]}
+  %h5 Sold
   - @available_options.each do |available_option|
     - checked = @search_params[:available_options] && @search_params[:available_options].include?(available_option.to_s)
     .inline.field.available-options

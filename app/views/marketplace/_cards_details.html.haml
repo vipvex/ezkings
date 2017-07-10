@@ -1,13 +1,13 @@
 .ui.relaxed.divided.list.celled
   - @view_cards.each do |card|
     .item
-      .right.floated.content
-        %span #{card.available} available |
-        %span $#{card.price}
-        .ui.button.blue Add To Cart
-      .left.floated.content
-        = image_tag 'card_placeholder.jpg', class: 'ui tiny image'
-      .content
-        .header= card.name
-        %p.description= card.description
-        
+      = link_to card do |f|
+        .right.floated.content
+          %h4.header $#{card.price} | #{card.available} available
+          .ui.button.blue Add To Cart
+        .left.floated.content
+          = image_tag 'card_placeholder.jpg', class: 'ui tiny image'
+        .content
+          %h3.header= card.name
+          %p.description= card.description
+          

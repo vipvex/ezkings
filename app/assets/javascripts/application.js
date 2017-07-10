@@ -15,4 +15,5 @@
 //= require jquery.zoom.min
 //= require turbolinks
 //= require semantic-ui
+//= require cloudinary
 //= require_tree .

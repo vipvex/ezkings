@@ -40,4 +40,17 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  
+  # For paypal
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "alexander-facilitator_api1.alexandersacademy.org",
+      password: "2Q7QD7WKMSHWG46L",
+      signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AHICpeBA9tXPyGn9sYIWw2IjrIuA"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
+  
 end

@@ -34,6 +34,12 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
+    
+    if params[:file].present?
+      preloaded = Cloudinary::PreloadedFile.new(params[:file])         
+      raise "Invalid upload signature" if !preloaded.valid?
+      @card.front_image_url = preloaded.identifier
+    end
 
     respond_to do |format|
       if @card.save
@@ -53,6 +59,12 @@ class CardsController < ApplicationController
   # PATCH/PUT /cards/1
   # PATCH/PUT /cards/1.json
   def update
+    if params[:image_id].present?
+      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
+      raise "Invalid upload signature" if !preloaded.valid?
+      @model.image_id = preloaded.identifier
+    end
+    
     respond_to do |format|
       if @card.update(card_params)
         format.html { redirect_to @card, notice: 'Card was successfully updated.' }
@@ -82,6 +94,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:name, :year, :description, :price, :front_image_url, :available, :back_image_url, :team_ids => [], :c_attribute_ids => [], :card_manufacturer_ids => [], :player_ids => [])
+      params.require(:card).permit(:name, :year, :description, :sku, :price, :serial_number, :front_image_url, :available, :back_image_url, :team_ids => [], :c_attribute_ids => [], :card_manufacturer_ids => [], :player_ids => [])
     end
 end
