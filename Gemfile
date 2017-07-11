@@ -61,3 +61,4 @@ gem "activemerchant"
 gem 'cloudinary'
 gem 'simplemde-rails'
 gem 'redcarpet'
+gem 'stripe'

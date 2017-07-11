@@ -27,8 +27,20 @@
 - unless @cart.empty?
   #paypal-button
 
-= @cart.total
-= raw @cart.paypal_items
+/ Stripe
+%form{:action => stripe_charge_path, :method => "POST"}
+%script.stripe-button{"data-amount" => @cart.total, 
+                      "data-description" => "2 widgets", 
+                      "data-image" => "https://stripe.com/img/documentation/checkout/marketplace.png", 
+                      "data-key" => "pk_test_3VbUkItkdIXpR1ojInXbGQSm", 
+                      "data-locale" => "auto", 
+                      "data-name" => "Demo Site",
+                      "data-zip-code" => "true",
+                      "data-billing-address" => "true",
+                      "data-shipping-address" => "true",
+                      :src => "https://checkout.stripe.com/checkout.js"}
+
+
 :javascript
   $(document).ready(function(){
   

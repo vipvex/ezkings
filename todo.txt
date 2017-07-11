@@ -36,3 +36,11 @@ SEO
 
 Copyright?
 Domain name?
+
+
+Info for Clint:
+Stripe
+Image Upload
+Heroku Login
+Github page
+Paypal account

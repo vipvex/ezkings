@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   
   delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
   post '/cart/add', :to => 'cart#add_cart_item', as: :add_cart_item
-
+  post "/cart/stripe_charge", to: 'cart#stripe_charge', as: :stripe_charge
 
   get "/p/*url", to: "pages#show"
   get "/checklists/*url", to: "checklists#show"
