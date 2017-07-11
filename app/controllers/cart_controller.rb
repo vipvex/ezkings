@@ -62,23 +62,27 @@ class CartController < ApplicationController
   end
   
   def stripe_charge 
-    # Set your secret key: remember to change this to your live secret key in production
-    # See your keys here: https://dashboard.stripe.com/account/apikeys
-    Stripe.api_key = "sk_test_6OopydYgYGr5KKqj65cS81dD"
-    
-    # Token is created using Stripe.js or Checkout!
-    # Get the payment token submitted by the form:
-    token = params[:stripeToken]
-    
-    # Charge the user's card:
-    charge = Stripe::Charge.create(
-      :amount => 1000,
-      :currency => "usd",
-      :description => "Example charge",
-      :source => token,
+    # Amount in cents
+    @amount = 500
+  
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :source  => params[:stripeToken]
     )
+  
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @amount,
+      :description => 'Rails Stripe customer',
+      :currency    => 'usd'
+    )
+  
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
     
-    redirect_to marketplace_path
+    respond_to do |format|
+      format.html { redirect_to cards_url, notice: 'Card was successfully destroyed.' }
+    end
   end
   
   private
