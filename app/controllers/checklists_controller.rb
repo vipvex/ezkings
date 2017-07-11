@@ -1,5 +1,5 @@
 class ChecklistsController < ApplicationController
-  before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklist, only: [:edit, :update, :destroy]
 
   # GET /checklists
   # GET /checklists.json
@@ -10,6 +10,8 @@ class ChecklistsController < ApplicationController
   # GET /checklists/1
   # GET /checklists/1.json
   def show
+    puts "\n#{params[:url]}\n"
+    @checklist = Checklist.find_by(url: params[:url])
   end
 
   # GET /checklists/new
@@ -28,7 +30,7 @@ class ChecklistsController < ApplicationController
 
     respond_to do |format|
       if @checklist.save
-        format.html { redirect_to @checklist, notice: 'Checklist was successfully created.' }
+        format.html { redirect_to "/checklists/#{@checklist.url}", notice: 'Checklist was successfully created.' }
         format.json { render :show, status: :created, location: @checklist }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ChecklistsController < ApplicationController
   def update
     respond_to do |format|
       if @checklist.update(checklist_params)
-        format.html { redirect_to @checklist, notice: 'Checklist was successfully updated.' }
+        format.html { redirect_to "/checklists/#{@checklist.url}", notice: 'Checklist was successfully updated.' }
         format.json { render :show, status: :ok, location: @checklist }
       else
         format.html { render :edit }
@@ -69,6 +71,6 @@ class ChecklistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checklist_params
-      params.require(:checklist).permit(:name, :content, :order)
+      params.require(:checklist).permit(:name, :content, :order, :url)
     end
 end

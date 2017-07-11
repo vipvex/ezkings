@@ -59,4 +59,5 @@ gem "faker"
 gem 'will_paginate', '~> 3.1.0'
 gem "activemerchant"
 gem 'cloudinary'
-gem 'md_simple_editor'
+gem 'simplemde-rails'
+gem 'redcarpet'

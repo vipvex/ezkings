@@ -6,8 +6,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Content</th>
       <th>Order</th>
+      <th>Url</th>
+      <th>Content</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +17,9 @@
     <% @checklists.each do |checklist| %>
       <tr>
         <td><%= checklist.name %></td>
-        <td><%= checklist.content %></td>
         <td><%= checklist.order %></td>
+        <td><%= checklist.url %></td>
+        <td><%= checklist.content %></td>
         <td><%= link_to 'Show', checklist %></td>
         <td><%= link_to 'Edit', edit_checklist_path(checklist) %></td>
         <td><%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -2,10 +2,12 @@
 
 one:
   name: MyString
-  content: MyText
   order: 1
+  url: MyString
+  content: MyText
 
 two:
   name: MyString
-  content: MyText
   order: 1
+  url: MyString
+  content: MyText

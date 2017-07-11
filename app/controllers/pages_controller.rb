@@ -43,7 +43,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to "/p/#{@page.url}", notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }

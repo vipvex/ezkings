@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require semantic-ui
 //= require cloudinary
+//= require simplemde.min
 //= require_tree .

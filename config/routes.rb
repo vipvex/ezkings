@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :checklists, except: [:show]
   #Mercury::Engine.routes
-  resources :checklists
   resources :card_manufacturer_cards
   get 'cart/cart'
   get 'cart/purchase_complete', as: :purchase_complete
@@ -29,7 +29,9 @@ Rails.application.routes.draw do
 
 
   get "/p/*url", to: "pages#show"
-  resources :pages
+  get "/checklists/*url", to: "checklists#show"
+  
+  resources :pages, except: [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

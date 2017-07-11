@@ -1,6 +1,7 @@
 .card
   =link_to card, class: 'image' do |c|
-    = cl_image_tag card.back_image_url || 'card_placeholder.jpg', class: 'ui small image'
+    = cl_image_tag card.back_image_url, class: 'ui small image' if card.back_image_url
+    = image_tag 'card_placeholder.jpg', class: 'ui small image' unless card.back_image_url
   .content
     %h5 
       #{card.name}

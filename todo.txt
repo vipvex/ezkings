@@ -1,11 +1,11 @@
-Add products resource
-  Each product has an html page for checklists
-  Add hidden html editor on checlists
++Add products resource
+  +Each product has an html page for checklists
+  +Add hidden html editor on checlists
 
 Card make them show up on the homepage
   Add field on cards to show on front page
 
-Cards
++Cards
   +Add stock keeping unit to cards
   +Upload images to cards
   +Reorder card form to make it easier to edit
@@ -28,3 +28,10 @@ Add stripe payments
   
 Add homepage
   Make homepage content editable
+
+
+Security
+
+SEO
+
+Copyright?

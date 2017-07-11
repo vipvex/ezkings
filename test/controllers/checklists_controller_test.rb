@@ -18,7 +18,7 @@ class ChecklistsControllerTest < ActionController::TestCase
 
   test "should create checklist" do
     assert_difference('Checklist.count') do
-      post :create, checklist: { content: @checklist.content, name: @checklist.name, order: @checklist.order }
+      post :create, checklist: { content: @checklist.content, name: @checklist.name, order: @checklist.order, url: @checklist.url }
     end
 
     assert_redirected_to checklist_path(assigns(:checklist))
@@ -35,7 +35,7 @@ class ChecklistsControllerTest < ActionController::TestCase
   end
 
   test "should update checklist" do
-    patch :update, id: @checklist, checklist: { content: @checklist.content, name: @checklist.name, order: @checklist.order }
+    patch :update, id: @checklist, checklist: { content: @checklist.content, name: @checklist.name, order: @checklist.order, url: @checklist.url }
     assert_redirected_to checklist_path(assigns(:checklist))
   end
 

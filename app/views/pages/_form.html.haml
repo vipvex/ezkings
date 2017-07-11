@@ -1,0 +1,35 @@
+.ui.form
+  = form_for(@page) do |f|
+    - if @page.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@page.errors.count, "error")
+          prohibited this page from being saved:
+        %ul
+          - @page.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :url
+      = f.text_field :url
+    .field
+      = f.text_area :content
+    .field
+      = f.label :layout
+      = f.text_field :layout
+    .actions
+      = f.submit
+      
+:javascript
+  var simplemde = new SimpleMDE({
+  	showIcons: ["code", "table"],
+  
+    insertTexts: {
+  		horizontalRule: ["", "\n\n-----\n\n"],
+  		image: ["![](http://", ")"],
+  		link: ["[", "](http://)"],
+  		table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+  	}
+  });
