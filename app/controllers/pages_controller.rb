@@ -12,6 +12,10 @@ class PagesController < ApplicationController
   def show
     @page = Page.find_by(url: params[:url])
   end
+  
+  def control
+  
+  end
 
   # GET /pages/new
   def new
