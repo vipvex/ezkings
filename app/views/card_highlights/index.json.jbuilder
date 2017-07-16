@@ -1,0 +1,1 @@
+json.array! @card_highlights, partial: 'card_highlights/card_highlight', as: :card_highlight

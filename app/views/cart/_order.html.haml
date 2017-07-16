@@ -1,0 +1,8 @@
+%h3.ui.header Order placed on #{cart.updated_at.strftime('%D')}
+- cart.cart_items.each do |item|  
+  .item
+    = image_tag(item.item.front_image_url, class: 'ui avatar image')
+    .content
+      =link_to item.item.name, item.item, class: 'header'
+      %b.description $#{item.item.price} (#{item.quantity} items)
+%h4.ui.header Total: $#{cart.total} | Shipping: #{cart.shipping_option.name}

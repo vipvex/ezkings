@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   private
   
   def create_cart
-    Card.create(user_id: self.id)
+    Card.create(user_id: self.id, shipping_option_id: ShippingOption.first.id)
   end
 end

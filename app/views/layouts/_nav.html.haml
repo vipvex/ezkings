@@ -1,8 +1,8 @@
-.ui.menu.stackable
+.ui.menu.stackable.pointing
   .ui.container
-    %a.item{:href => marketplace_path}
-      = image_tag 'logo.png'
-    = link_to "#", class: 'ui item link' do |f|
+    %a.item.nav-logo{:href => marketplace_path}
+      = image_tag 'logo_short.png'
+    = link_to home_path, class: 'ui item link active' do |f|
       %i.home.icon
       Home
     = link_to marketplace_path, class: 'ui item link' do |f|
@@ -26,14 +26,13 @@
         = current_user.email
         %i.dropdown.icon
         .menu
+          = link_to 'My Orders', orders_path, class: 'item'
           %a.item{:href => "#"} Setting
           = link_to('Logout', destroy_user_session_path, method: :delete, class: 'item')
     - else
       .right.menu
         .item
           = link_to('Log-in', new_user_session_path, class: 'ui primary button')
-        .item
-          = link_to('Sign Up', new_user_registration_path, class: 'ui green button')
     .ui.item
       = link_to current_user ? cart_path : new_user_session_path do
         %i.icon.shop

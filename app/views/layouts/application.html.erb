@@ -13,6 +13,16 @@
 
 <div class="ui main container segment">
   <div class="ui text container"> 
+    
+    <% if flash[:notice] %>
+      <div class="ui message">
+        <i class="close icon"></i>
+        <div class="header">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </div>
 </div>

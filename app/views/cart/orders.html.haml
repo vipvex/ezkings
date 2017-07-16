@@ -1,6 +1,6 @@
-- @carts.each do |cart|
-  %h1.header Order On #{cart.updated_at.strftime('%D')}
-  - cart.cart_items.each do |item|
-    %h3.header #{item.item.name} (#{item.quantity}) $#{item.item.price}
+%h1.header Your Orders
+
+.ui.list
+  - @carts.each do |cart|
+    = render 'order', cart: cart
     
-  %p Total #{cart.total}

@@ -1,0 +1,17 @@
+= form_tag stripe_charge_path, :method => "POST" do |f|
+  = hidden_field_tag 'cart[cart_id]', @cart.id
+  %article
+    - if flash[:error].present?
+      #error_explanation
+        %p= flash[:error]
+  %script.stripe-button{"data-amount" => @cart.total_in_cents, 
+                        "data-description" => "2 widgets", 
+                        "data-image" => "https://stripe.com/img/documentation/checkout/marketplace.png", 
+                        "data-key" => "pk_test_3VbUkItkdIXpR1ojInXbGQSm", 
+                        "data-locale" => "auto", 
+                        "data-name" => "Demo Site",
+                        "data-zip-code" => "true",
+                        "data-billing-address" => "true",
+                        "data-shipping-address" => "true",
+                        :src => "https://checkout.stripe.com/checkout.js"}
+    :cdata

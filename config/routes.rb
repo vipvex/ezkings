@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :card_highlights
+  resources :shipping_options
+  resources :taxes
   resources :checklists, except: [:show]
   #Mercury::Engine.routes
   resources :card_manufacturer_cards
@@ -23,15 +26,18 @@ Rails.application.routes.draw do
 
   get 'marketplace/search'
   get '/cart', to: 'cart#cart', as: :cart
+  post '/cart/update', to: 'cart#update', as: :update
   
   delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
   post '/cart/add', :to => 'cart#add_cart_item', as: :add_cart_item
   post "/cart/stripe_charge", to: 'cart#stripe_charge', as: :stripe_charge
+  resources :carts
 
   get "/p/*url", to: "pages#show"
   get "/checklists/*url", to: "checklists#show"
   
   resources :pages, except: [:show]
+  get '/home', to: 'pages#home', as: :home
   get '/control', to: 'pages#control' 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

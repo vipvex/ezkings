@@ -1,0 +1,59 @@
+- unless @cart.empty?
+  #paypal-button
+:javascript
+  $(document).ready(function(){
+  
+    paypal.Button.render({
+
+      env: 'sandbox', // Or 'sandbox'
+
+      client: {
+        sandbox:    'AcT2KtYH-7KxGimT-GjdXVZCuBCFtsqaFu046APlI4OEGNoUbSrueWzCY49iBpVabKWH2oNSUSGPRtuG',
+        production: 'ARdHtKzj3_UP62cGF7GLjErfKojkRXp_ca08LSCYWjU56In4bqjLHL-6uw86OMpjOQm4hESBdC9I8GI_'
+      },
+
+      commit: true, // Show a 'Pay Now' button
+
+      payment: function(data, actions) {
+        return actions.payment.create({
+          payment: {
+            transactions: [
+              {
+                amount: { 
+                  total: #{@cart.total}, 
+                  currency: 'USD',
+                  details: {
+                    subtotal: #{@cart.subtotal},
+                    tax: #{@cart.taxes},
+                    shipping: #{@cart.shipping_cost}
+                  }
+                },
+                item_list: { 
+                  items: #{raw @cart.paypal_items}
+                }
+              }
+            ]
+          }
+        });
+      },
+
+      onAuthorize: function(data, actions) {
+        return actions.payment.execute().then(function(payment) {
+
+          console.log(payment);
+              
+          $.ajax({
+            type: "POST",
+            url: "#{purchase_path}",
+            data: { cart: { cart_id: #{@cart.id} } },
+            success: function(){
+              console.log("BOOM!")
+            }
+          });
+          
+        });
+      }
+
+    }, '#paypal-button');
+  
+  });

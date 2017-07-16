@@ -1,1 +1,7 @@
-%h1.header Thank you!
+%h1.header Purchase Complete, Thank You!
+
+.ui.list
+  = render 'order', cart: @cart
+
+%h3.ui.header Continue Shopping:
+= link_to 'Go To Marketplace', marketplace_path, class: 'ui button blue'

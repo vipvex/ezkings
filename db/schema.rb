@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710221805) do
+ActiveRecord::Schema.define(version: 20170716183456) do
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20170710221805) do
 
   add_index "card_attributes", ["attribute_id"], name: "index_card_attributes_on_attribute_id"
   add_index "card_attributes", ["card_id"], name: "index_card_attributes_on_card_id"
+
+  create_table "card_highlights", force: :cascade do |t|
+    t.integer  "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "card_highlights", ["card_id"], name: "index_card_highlights_on_card_id"
 
   create_table "card_manufacturer_cards", force: :cascade do |t|
     t.integer  "card_id"
@@ -93,11 +101,17 @@ ActiveRecord::Schema.define(version: 20170710221805) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "purchased",  default: false
+    t.string   "zip_code"
+    t.string   "country",            default: "US"
+    t.boolean  "purchased",          default: false
+    t.string   "shipping_option"
+    t.integer  "shipping_price",     default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "shipping_option_id"
   end
 
+  add_index "carts", ["shipping_option_id"], name: "index_carts_on_shipping_option_id"
   add_index "carts", ["user_id"], name: "index_carts_on_user_id"
 
   create_table "checklists", force: :cascade do |t|
@@ -138,6 +152,20 @@ ActiveRecord::Schema.define(version: 20170710221805) do
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shipping_options", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.float    "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

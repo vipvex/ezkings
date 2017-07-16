@@ -1,0 +1,31 @@
+.ui.vertical.center.aligned.segment.masthead.inverted.meadmastr
+  .ui.text.container.front-padding
+    = image_tag 'logo.png', class: 'ui image large centered'
+    %h1.ui.inverted.header.huge
+      EZ Kings Card Store
+    %h3.ui.inverted.header The Best LA Kings Hokey Cards
+    = link_to marketplace_path, class: 'ui huge primary button' do
+      View Marketplace
+      %i.right.arrow.icon
+    
+
+.ui.centered.grid
+  .twelve.wide.column.front-padding
+    %h1.ui.header.centered Latest Cards
+    .ui.link.five.cards.doubling
+      - @highlights_cards.each do |card|
+        = render 'marketplace/card', card: card
+        
+
+
+.ui.text.container.front-padding
+  %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel pharetra sem. Vestibulum condimentum tempus mi efficitur porttitor. Nulla egestas in lacus sed volutpat. Vivamus placerat ante blandit enim maximus vestibulum. Nam mattis, mauris non congue finibus, velit eros lobortis massa, ut feugiat leo diam id leo. Aliquam mollis arcu blandit purus ullamcorper, nec blandit diam sollicitudin. Nunc ultricies vitae tellus a lacinia. Quisque varius arcu vel dapibus venenatis. Duis dignissim tortor et ex dictum imperdiet. Nunc pulvinar vitae mi ac auctor. Duis volutpat dui ut turpis placerat tempus.
+
+  %p Etiam diam libero, faucibus nec urna eget, gravida vehicula nunc. Curabitur suscipit vestibulum arcu id eleifend. Nulla quis ullamcorper metus, sit amet suscipit magna. Sed a pellentesque diam. Vestibulum nec nulla in urna rutrum dictum in eget ante. Maecenas iaculis, est nec aliquam eleifend, orci diam tempus lorem, eget volutpat odio ante laoreet ante. Cras rhoncus maximus turpis a ultricies. Proin justo nunc, molestie nec sagittis non, porttitor non nisi. Quisque risus odio, ullamcorper cursus ligula et, tempor sollicitudin tortor. Nullam aliquam est sit amet nibh feugiat, sit amet gravida nisi pellentesque. Nam ultrices pretium quam et blandit.
+  
+  %p Aenean a turpis non diam blandit pulvinar. Proin in massa a ante sagittis vulputate. Nullam pretium turpis at mauris pulvinar ultrices. Aliquam pharetra, lorem et pulvinar aliquet, nulla justo porta ligula, sit amet posuere ex nibh eget eros. Ut non lacinia enim, a feugiat odio. Sed quis diam dolor. Suspendisse viverra posuere libero, eu condimentum ex rutrum id. Nulla vel purus volutpat, malesuada magna a, fringilla nisi. Fusce sit amet purus eget purus hendrerit sagittis ac et mi. Nulla facilisi. Sed posuere augue quis enim tristique cursus. Sed tristique eu lorem eu auctor. Etiam sit amet eros vitae dui gravida auctor. Nulla aliquam tellus dui, vitae pretium felis suscipit sit amet. Maecenas et tempus magna. Nullam tincidunt pretium justo a vulputate.
+  
+  %p In nec lectus leo. Vestibulum ipsum massa, facilisis congue interdum vel, malesuada sit amet ante. Sed in dolor semper, viverra justo sed, laoreet purus. Fusce efficitur varius mollis. Etiam vulputate, dui ut ullamcorper dapibus, lectus lectus vestibulum lorem, id laoreet dui justo finibus arcu. Fusce mollis, magna et finibus gravida, libero neque interdum nisl, nec congue ligula nisi in metus. Integer fermentum ex magna, sed vestibulum nibh suscipit non. In magna tortor, lacinia vitae ornare vitae, interdum vulputate velit. Vestibulum vel sem porttitor, placerat lacus non, vehicula nunc. Suspendisse sit amet lacus nibh. Sed varius euismod imperdiet. Ut id augue quis nibh euismod scelerisque vitae et mi. Donec auctor leo nec accumsan pharetra. Etiam fermentum magna imperdiet fringilla iaculis. Pellentesque eu rhoncus lectus.
+  
+  %p Aliquam nec commodo ligula, in varius mauris. Nam eu quam eleifend, facilisis lacus sit amet, pharetra orci. Pellentesque a aliquam mauris, ut bibendum lorem. Maecenas quis diam et ex ornare aliquam dignissim non justo. Fusce condimentum, justo at mollis semper, neque dolor posuere urna, ac suscipit neque metus eu ex. Donec eros felis, rhoncus vel dolor id, semper tristique purus. Sed ut nulla at risus sodales porta ac non nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent fermentum ante nibh, vestibulum pretium risus vulputate a. Nunc lectus tortor, vehicula id neque eu, vulputate aliquam ligula. Proin pharetra vitae lectus sit amet vulputate. Quisque dictum dui ut mattis sagittis. Aenean ultrices, est non suscipit consectetur, nisl nunc ultrices turpis, vitae dapibus nisi purus sed justo.
+  

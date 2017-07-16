@@ -1,52 +1,37 @@
-%h1.header Cart
+%h1.header Shopping Cart
 .ui.divided.items
   - @cart.cart_items.each do |item|
-    .item
-      .image
-        = image_tag('card_placeholder.jpg', class: 'img', style: 'max-width: 100px')
-      .content
-        %a.header #{item.item.name} (#{item.quantity})
-        .meta
-          %span #{item.price}
-        .description
-          %p
-        .ui.form
-        = form_for :cart, url: add_cart_item_path do |f|
-          = f.hidden_field :card_id, value: item.item.id
-          .field
-            = select_tag :quantity, options_for_select(1..item.item.available, item.quantity), { class: 'ui dropdown card-quantity', name: 'cart[quantity]' }
-        .extra
-          = link_to remove_cart_item_path(cart: { cart_item_id: item.item.id }), method: :delete, class: 'ui right floated button', data: { confirm: 'Are you sure?' } do |c|
-            Remove
-            %i.right.chevron.icon
+    = render 'cart_item', item: item    
 
+- if @cart.cart_items.empty?
+  %h3.ui.header Your Shopping Cart Is Empty.
+  = link_to 'Go To Marketplace', marketplace_path, class: 'ui button blue'
+- else
+
+  .ui.divider
   
-%h2.header Subtotal (#{@cart.cart_items.count}): $#{@cart.total} 
-/%button.ui.button.blue Proceed to checkout
-
-- unless @cart.empty?
-  #paypal-button
-
-/ Stripe
-
-= form_tag stripe_charge_path, :method => "POST" do |f|
-  %article
-    - if flash[:error].present?
-      #error_explanation
-        %p= flash[:error]
-  %script.stripe-button{"data-amount" => @cart.total, 
-                        "data-description" => "2 widgets", 
-                        "data-image" => "https://stripe.com/img/documentation/checkout/marketplace.png", 
-                        "data-key" => "pk_test_3VbUkItkdIXpR1ojInXbGQSm", 
-                        "data-locale" => "auto", 
-                        "data-name" => "Demo Site",
-                        "data-zip-code" => "true",
-                        "data-billing-address" => "true",
-                        "data-shipping-address" => "true",
-                        :src => "https://checkout.stripe.com/checkout.js"}
-    :cdata
-
-
+  %h3.header Shipping Options
+  = render 'shipping_options'
+  
+  .ui.divider
+  
+  %h3.header.ui Order Summary
+  
+  %div Items (#{@cart.total_unique_items}): $#{@cart.subtotal}
+  %div Shipping & Handling: $#{@cart.shipping_cost} 
+  %div Estimated tax to be collected: $#{@cart.taxes} 
+  
+  %h3.header.ui.red Total (#{@cart.total_unique_items} items): $#{@cart.total} 
+  
+  
+  /- if @cart.zip_code_set?
+  .ui.form
+    .fields
+      .field
+        = render 'stripe_form'
+      .field
+        = render 'paypal_form'
+  
 :javascript
   $(document).ready(function(){
   
@@ -54,51 +39,11 @@
         this.form.submit();
     });
     
+    $(".dropdown").dropdown();
+    $(".checkbox").checkbox().checkbox({
+      onChange: function(){
+        this.form.submit();
+      }
+    });
+    
   });
-
-  paypal.Button.render({
-
-        env: 'sandbox', // Or 'sandbox'
-
-        client: {
-            sandbox:    'AcT2KtYH-7KxGimT-GjdXVZCuBCFtsqaFu046APlI4OEGNoUbSrueWzCY49iBpVabKWH2oNSUSGPRtuG',
-            production: 'ARdHtKzj3_UP62cGF7GLjErfKojkRXp_ca08LSCYWjU56In4bqjLHL-6uw86OMpjOQm4hESBdC9I8GI_'
-        },
-
-        commit: true, // Show a 'Pay Now' button
-
-        payment: function(data, actions) {
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: #{@cart.total}, currency: 'USD' },
-                            item_list: { 
-                                items: #{raw @cart.paypal_items}
-                            }
-                        }
-                    ]
-                }
-            });
-        },
-
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function(payment) {
-
-                console.log(payment);
-                
-                
-                $.ajax({
-                  type: "POST",
-                  url: "#{purchase_path}",
-                  data: { cart: { cart_id: #{@cart.id} } },
-                  success: function(){
-                    console.log("BOOM!")
-                  }
-                });
-                // The payment is complete!
-                // You can now show a confirmation message to the customer
-            });
-        }
-
-    }, '#paypal-button');

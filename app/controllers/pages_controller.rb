@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout 'full_width', :only => [:home]
+  
   before_action :set_page, only: [:edit, :update, :destroy]
 
   # GET /pages
@@ -11,6 +13,10 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find_by(url: params[:url])
+  end
+  
+  def home
+    @highlights_cards = CardHighlight.all.collect(&:card)    
   end
   
   def control

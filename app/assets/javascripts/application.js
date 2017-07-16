@@ -18,3 +18,10 @@
 //= require cloudinary
 //= require simplemde.min
 //= require_tree .
+
+$(function(){
+  $('.message .close')
+  .on('click', function() {
+    $(this).closest('.message').transition('fade');
+  });
+})

@@ -1,0 +1,2 @@
+module CardHighlightsHelper
+end

@@ -10,21 +10,21 @@ Card make them show up on the homepage
   +Upload images to cards
   +Reorder card form to make it easier to edit
 
-Add shipping options and pricing
-  Add shopping options with pricing
-  Add ui for shipping info
++Add shipping options and pricing
+  +Add shopping options with pricing
+  +Add ui for shipping info
 
 
-Add tax option
-  Add tax option model and conroll for site
++Add tax option
+  +Add tax option model and conroll for site
 
 Add stripe payments
-  Gem
-  Signup account
-  Express checkout js
-  Controller actions
+  +Gem
+  +Express checkout js
+  +Controller actions
   Record orders and shipping info
   Email reciets?
+  Record orders
   
 Add homepage
   Make homepage content editable

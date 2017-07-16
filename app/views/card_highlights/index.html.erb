@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Card Highlights</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @card_highlights.each do |card_highlight| %>
+      <tr>
+        <td><%= card_highlight.card %></td>
+        <td><%= link_to 'Show', card_highlight %></td>
+        <td><%= link_to 'Edit', edit_card_highlight_path(card_highlight) %></td>
+        <td><%= link_to 'Destroy', card_highlight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Card highlight', new_card_highlight_path %>
