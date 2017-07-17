@@ -1,6 +1,5 @@
 class CartController < ApplicationController
   before_action :authenticate_user!
-
   
   def cart
     @cart = current_user.cart

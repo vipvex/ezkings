@@ -1,6 +1,10 @@
 class MarketplaceController < ApplicationController
   layout 'full_width'
   
+  load_and_authorize_resource
+  skip_authorize_resource :only => :search
+
+  
   def index
     @attributes = Attribute.all
     @players = Player.all

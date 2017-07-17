@@ -1,6 +1,8 @@
 class CardHighlightsController < ApplicationController
   before_action :set_card_highlight, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /card_highlights
   # GET /card_highlights.json
   def index

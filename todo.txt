@@ -1,37 +1,3 @@
-+Add products resource
-  +Each product has an html page for checklists
-  +Add hidden html editor on checlists
-
-Card make them show up on the homepage
-  Add field on cards to show on front page
-
-+Cards
-  +Add stock keeping unit to cards
-  +Upload images to cards
-  +Reorder card form to make it easier to edit
-
-+Add shipping options and pricing
-  +Add shopping options with pricing
-  +Add ui for shipping info
-
-
-+Add tax option
-  +Add tax option model and conroll for site
-
-Add stripe payments
-  +Gem
-  +Express checkout js
-  +Controller actions
-  Record orders and shipping info
-  Email reciets?
-  Record orders
-  
-Add homepage
-  Make homepage content editable
-
-
-Security
-
 SEO
 
 Copyright?

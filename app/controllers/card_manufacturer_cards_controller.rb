@@ -1,6 +1,8 @@
 class CardManufacturerCardsController < ApplicationController
   before_action :set_card_manufacturer_card, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /card_manufacturer_cards
   # GET /card_manufacturer_cards.json
   def index

@@ -9,17 +9,22 @@
 </head>
 <body>
 
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
 <%= render 'layouts/nav' %>
 
-<div class="ui main">
+<div class="ui main container segment">
+  <div class="ui"> 
+  
+  <% if flash[:notice] %>
+    <div class="ui message container">
+      <i class="close icon"></i>
+      <div class="header">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  <% end %>
+  
   <%= yield %>
+  </div>
 </div>
 
 </body>

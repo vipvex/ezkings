@@ -1,6 +1,8 @@
 class ShippingOptionsController < ApplicationController
   before_action :set_shipping_option, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /shipping_options
   # GET /shipping_options.json
   def index

@@ -1,6 +1,6 @@
 %h1.header Shopping Cart
 .ui.divided.items
-  - @cart.cart_items.each do |item|
+  - @cart.cart_items.order(created_at: :DESC).each do |item|
     = render 'cart_item', item: item    
 
 - if @cart.cart_items.empty?

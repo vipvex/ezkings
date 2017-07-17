@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
     carts.where(purchased: false).first
   end
   
+  def admin?
+    id == 2
+  end
   
   private
   

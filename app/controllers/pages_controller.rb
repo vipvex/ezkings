@@ -3,14 +3,14 @@ class PagesController < ApplicationController
   
   before_action :set_page, only: [:edit, :update, :destroy]
 
-  # GET /pages
-  # GET /pages.json
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:home, :control]
+
+
   def index
     @pages = Page.all
   end
 
-  # GET /pages/1
-  # GET /pages/1.json
   def show
     @page = Page.find_by(url: params[:url])
   end
@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   end
   
   def control
-  
+    
   end
 
   # GET /pages/new

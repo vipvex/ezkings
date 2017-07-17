@@ -13,13 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.zoom.min
-//= require turbolinks
 //= require semantic-ui
 //= require cloudinary
+//= require turbolinks
 //= require simplemde.min
 //= require_tree .
 
 $(function(){
+
+  // Google Analytics  
+  ga('send', 'pageview', window.location.pathname);
+
+  
   $('.message .close')
   .on('click', function() {
     $(this).closest('.message').transition('fade');

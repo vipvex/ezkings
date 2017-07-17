@@ -1,19 +1,10 @@
-.ui.sidebar.vertical.menu.visible.wide 
-  %a.item
-    = render 'search_sidebar'
-  %a.item
-    2
-  %a.item
-    3
-
-
-.ui.grid.stackable.left-right-padding
+.ui.grid.stackable
+  
   .four.wide.column
     = render 'search_sidebar'
-      
-      
+  
   .twelve.wide.column
-    .ui.segment.marketplace
+    .ui.marketplace
       
       = render 'filter_options'
 
@@ -48,8 +39,7 @@
             searchMarketplace();
         }
     });
-    
-    //$('.ui.sidebar').sidebar('toggle');
+
   });
   
   function searchMarketplace(){
