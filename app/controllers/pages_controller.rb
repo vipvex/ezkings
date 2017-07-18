@@ -10,18 +10,26 @@ class PagesController < ApplicationController
   def index
     @pages = Page.all
   end
-
-  def show
-    @page = Page.find_by(url: params[:url])
-  end
   
+    
   def home
     @highlights_cards = CardHighlight.all.collect(&:card)    
+    
+    prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
   end
   
-  def control
     
+  def control
   end
+
+  def show
+    @page = Page.find_by(url: params[:url]) or not_found
+    
+    prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace",
+                      description: "",
+                      keywords: "")
+  end
+
 
   # GET /pages/new
   def new

@@ -7,4 +7,46 @@ class ApplicationController < ActionController::Base
     flash[:notice] = exception.message
     redirect_to root_url
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+  
+  before_action :prepare_meta_tags, if: "request.get?"
+
+  def prepare_meta_tags(options={})
+    site_name   = "EZ Kings"
+    title       = [controller_name, action_name].join(" ")
+    description = "Buy LA Kings hockey cards online with EZ Kings. Find roockie cards. Shiping ontime."
+    image       = options[:image] || "your-default-image-url"
+    current_url = request.url
+
+    # Let's prepare a nice set of defaults
+    defaults = {
+      site:        site_name,
+      title:       title,
+      image:       image,
+      description: description,
+      keywords:    %w[ez kings ezkings lakings hokeycards buy],
+      twitter: {
+        site_name: site_name,
+        site: '@ezkings',
+        card: 'summary',
+        description: description,
+        image: image
+      },
+      og: {
+        url: current_url,
+        site_name: site_name,
+        title: title,
+        image: image,
+        description: description,
+        type: 'website'
+      }
+    }
+
+    options.reverse_merge!(defaults)
+
+    set_meta_tags options
+  end
 end

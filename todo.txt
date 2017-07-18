@@ -1,4 +1,22 @@
 SEO
+  https://blog.kissmetrics.com/seo-guide/
+  
+  Setup google analytics
+  
+  Unique titles for all pages
+  Meta tag description for all pages
+  Sitemap
+  Only one H1 Per Pages
+  As many h2, h3s as needed
+  Hs should include keywords
+  Unique website and business names allow you to monopolize search engines and to build a personal brand. You create a new word in the users vocabulary
+  Make Urls easilty readable
+  Images should have alt tags
+  Image link names should be relevant - rename image links on upload
+  Make sure many well regarded sites link to EZ kings with links that are called "ez kings" and "cards" because it makes the page trustworthy
+  Add 404 page
+  
+  
 
 Copyright?
 Domain name?

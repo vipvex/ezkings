@@ -2,7 +2,7 @@
   .ui.text.container.front-padding
     = image_tag 'logo.png', class: 'ui image large centered'
     %h1.ui.inverted.header.huge
-      EZ Kings Card Store
+      EZ Kings Hokey Card Store
     %h3.ui.inverted.header The Best LA Kings Hokey Cards
     = link_to marketplace_path, class: 'ui huge primary button' do
       View Marketplace
@@ -10,7 +10,7 @@
     
 
 .ui.centered.grid
-  .twelve.wide.column.front-padding
+  .fourteen.wide.column.front-padding
     %h1.ui.header.centered Latest Cards
     .ui.link.five.cards.doubling
       - @highlights_cards.each do |card|

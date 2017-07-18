@@ -12,8 +12,8 @@
       More
       %i.dropdown.icon
       .menu
-        - Page.all.each do |p|
-          = link_to(p.name, "/p/#{p.url}", class: 'item')
+        - Page.all.each do |page|
+          = link_to(page.name, "/#{page.url}", class: 'item')
         = link_to('Contact Us', "", class: 'item')
     .ui.dropdown.simple.item
       Checklists

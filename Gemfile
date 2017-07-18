@@ -64,3 +64,5 @@ gem 'redcarpet'
 gem 'stripe'
 gem 'active_shipping'
 gem 'cancancan'
+gem 'meta-tags'
+

@@ -33,9 +33,10 @@ Rails.application.routes.draw do
   get "/checklists/*url", to: "checklists#show"
   
   resources :pages, except: [:show]
-  get "/p/*url", to: "pages#show"
-  get '/home', to: 'pages#home', as: :home
+  get '', to: 'pages#home', as: :home
   get '/control', to: 'pages#control'
+
+  get "/*url", to: "pages#show"
   
   
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
