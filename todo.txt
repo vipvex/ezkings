@@ -6,6 +6,7 @@ SEO
   Unique titles for all pages
   Meta tag description for all pages
   Sitemap
+    Sitemap auto refresher
   Only one H1 Per Pages
   As many h2, h3s as needed
   Hs should include keywords

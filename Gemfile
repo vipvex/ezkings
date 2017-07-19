@@ -65,4 +65,5 @@ gem 'stripe'
 gem 'active_shipping'
 gem 'cancancan'
 gem 'meta-tags'
-
+gem 'sitemap_generator'
+gem 'human_power'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount HumanPower::Rails::Engine => "robots.txt"
   root 'pages#home'
 
   resources :card_highlights

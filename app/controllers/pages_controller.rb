@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:edit, :update, :destroy]
 
   load_and_authorize_resource
-  skip_authorize_resource :only => [:home]
+  skip_authorize_resource :only => [:home, :verification]
 
 
   def index
@@ -17,8 +17,7 @@ class PagesController < ApplicationController
     
     prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
   end
-  
-    
+
   def control
   end
 
