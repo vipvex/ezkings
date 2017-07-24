@@ -1,2 +1,2 @@
 disallow :none
-#sitemap sitemap_url
+sitemap home_url
