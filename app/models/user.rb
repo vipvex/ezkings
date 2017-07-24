@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    id == 1
+    self.id == 1
   end
   
   private
