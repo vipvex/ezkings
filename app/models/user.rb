@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    true#self.id == 4
+    self.id == 4
   end
   
   private
