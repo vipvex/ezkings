@@ -1,22 +1,26 @@
 .card
   =link_to card, class: 'image' do |c|
-    = cl_image_tag card.back_image_url, class: 'ui small image' if card.back_image_url
-    = image_tag 'card_placeholder.jpg', class: 'ui small image' unless card.back_image_url
+    = cl_image_tag card.front_image_url, class: 'ui' if card.back_image_url
+    = image_tag 'card_placeholder.jpg', class: 'ui' unless card.back_image_url
   .content
     %h5 
       #{card.name}
       - unless card.c_attributes.where(name: 'Rookie').empty?
         %span.ui.label.yellow.mini= "RY"
-    %strong #{card.players.first.name} / 
-    %strong #{card.serial_number}
-    %span.meta.right.floated.time #{card.available} Available
-  .ui.two.bottom.attached.buttons
-    = link_to card, class: 'ui button' do |c|
-      %i.unhide.icon
-      View
-    = link_to add_cart_item_path(cart: { card_id: card.id, quantity: 1 } ), method: :post, class: "ui primary button #{'disabled' unless card.available?}" do |c|
-      - if card.available?
-        /%i.add.icon
-        Buy $#{card.price}
-      - else
-        Out of Stock
+    .ui #{card.players.first.name} #{card.serial_number}
+
+    .ui.centered
+      %strong{ style: 'color: #2185D0' } $#{card.price} 
+      %span{ style: 'color: gray' } (#{card.available} Available)
+      
+
+  /.ui.two.bottom.attached.buttons
+  /  = link_to card, class: 'ui button' do |c|
+  /    %i.unhide.icon
+  /    View
+  /  = link_to add_cart_item_path(cart: { card_id: card.id, quantity: 1 } ), method: :post, class: "ui primary button #{'disabled' unless card.available?}" do |c|
+  /    - if card.available?
+  /      /%i.add.icon
+  /      Buy $#{card.price}
+  /    - else
+  /      Out of Stock

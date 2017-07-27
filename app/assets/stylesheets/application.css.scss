@@ -40,6 +40,19 @@ html, body {
   padding: 8px !important;
 }
 
+.card {
+  
+  .image {
+    
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 270px;
+    
+  }
+  
+}
+
 .menu {
   margin-bottom: 0px !important;
 }
