@@ -22,7 +22,7 @@
         - Checklist.all.each do |p|
           = link_to(p.name, "/checklists/#{p.url}", class: 'item')
     
-    - if current_user.admin?
+    - if current_user && current_user.admin?
       = link_to control_path, class: 'ui item link' do |f|
         %i.grid.layout.icon
         Conrol Center
