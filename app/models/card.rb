@@ -1,8 +1,8 @@
 class Card < ActiveRecord::Base
-  has_many :card_attributes
-  has_many :card_manufacturer_cards
-  has_many :card_teams
-  has_many :card_players
+  has_many :card_attributes, dependent: :destroy
+  has_many :card_manufacturer_cards, dependent: :destroy
+  has_many :card_teams, dependent: :destroy
+  has_many :card_players, dependent: :destroy
   
   
   has_many :c_attributes, :through => :card_attributes, class_name: 'Attribute'
