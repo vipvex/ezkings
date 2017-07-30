@@ -39,8 +39,48 @@
             searchMarketplace();
         }
     });
+    
+    sortItems(".resortable-attributes")
+    sortItems(".resortable-players")
+    sortItems(".resortable-teams")
+    sortItems(".resortable-manufacturers")
+    sortItems(".resortable-seasons")
+    showLess();
 
   });
+  
+  function showMore(){
+      
+    var listChildren = $(".players").show();
+    
+    $("#show-more").hide();
+    $("#show-less").show();
+  }
+  
+  function showLess() {
+    var showCount = 2; 
+    var listChildren = $(".players");
+    listChildren.hide();
+    
+    for(var a = 0; a < showCount; a++){
+      $(listChildren[a]).show();
+    }
+    
+    $("#show-less").hide();
+    $("#show-more").show();
+  }
+  
+  
+  function sortItems(parent){
+    var searchFields = $(parent);
+    var items = searchFields.children(".resortable-item");
+    
+    items.sort(function(a, b){
+      return parseInt($(b).attr("value")) > parseInt($(a).attr("value")) ? 1 : -1;  
+    });
+    
+    searchFields.append(items);
+  }
   
   function searchMarketplace(){
     

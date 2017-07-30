@@ -9,55 +9,68 @@
         .six.wide.field
           %button.ui.button.fluid.blue#search-button Search!
   %h5 Attributes
-  - @attributes.each do |attribute|
-    - checked = @search_params[:attribute_ids] && @search_params[:attribute_ids].include?(attribute.id.to_s)
-    .inline.field.attributes
-      .ui.checkbox{ value: attribute.id, class: ('checked' if checked) }
-        - if checked
-          %input{:type => "checkbox", :checked => "checked" }
-        - else
-          %input{:type => "checkbox" }
-        %label #{attribute.name} (#{attribute.card_attributes.where(card_id: @cards.pluck(:id)).count})
+  .resortable-attributes
+    - @attributes.each do |attribute|
+      - checked = @search_params[:attribute_ids] && @search_params[:attribute_ids].include?(attribute.id.to_s)
+      - count = attribute.card_attributes.where(card_id: @cards.pluck(:id)).count
+      .inline.field.attributes.resortable-item{ value: count }
+        .ui.checkbox{ value: attribute.id, class: ('checked' if checked) }
+          - if checked
+            %input{:type => "checkbox", :checked => "checked" }
+          - else
+            %input{:type => "checkbox" }
+          %label #{attribute.name} (#{count})
   %h5 Players
-  - @players.each do |player|
-    - checked = @search_params[:player_ids] && @search_params[:player_ids].include?(player.id.to_s)
-    .inline.field.players
-      .ui.checkbox{ value: player.id, class: ('checked' if checked) }
-        - if checked
-          %input{:type => "checkbox", :checked => "checked" }
-        - else
-          %input{:type => "checkbox" }
-        %label #{player.name} (#{player.card_players.where(card_id: @cards.pluck(:id)).count})
+  .resortable-players
+    - @players.each do |player|
+      - checked = @search_params[:player_ids] && @search_params[:player_ids].include?(player.id.to_s)
+      - count = player.card_players.where(card_id: @cards.pluck(:id)).count
+      .inline.field.players.resortable-item{ value: count }
+        .ui.checkbox{ value: player.id, class: ('checked' if checked) }
+          - if checked
+            %input{:type => "checkbox", :checked => "checked" }
+          - else
+            %input{:type => "checkbox" }
+          %label #{player.name} (#{count})
+  %a#show-more{ href: '#', onclick: 'showMore(); return false;' } Show More
+  %a#show-less{ href: '#', onclick: 'showLess(); return false;' } Show Less
+  
   %h5 Teams
-  - @teams.each do |team|
-    - checked = @search_params[:team_ids] && @search_params[:team_ids].include?(team.id.to_s)
-    .inline.field.teams
-      .ui.checkbox{ value: team.id, class: ('checked' if checked) }
-        - if checked
-          %input{:type => "checkbox", :checked => "checked" }
-        - else
-          %input{:type => "checkbox" }
-        %label #{team.name} (#{team.card_teams.where(card_id: @cards.pluck(:id)).count})
+  .resortable-teams
+    - @teams.each do |team|
+      - checked = @search_params[:team_ids] && @search_params[:team_ids].include?(team.id.to_s)
+      - count = team.card_teams.where(card_id: @cards.pluck(:id)).count
+      .inline.field.teams.resortable-item{ value: count }
+        .ui.checkbox{ value: team.id, class: ('checked' if checked) }
+          - if checked
+            %input{:type => "checkbox", :checked => "checked" }
+          - else
+            %input{:type => "checkbox" }
+          %label #{team.name} (#{count})
   %h5 Manufactureres
-  - @card_manufacturers.each do |card_manufacturer|
-    - checked = @search_params[:card_manufacturer_ids] && @search_params[:card_manufacturer_ids].include?(card_manufacturer.id.to_s)
-    .inline.field.card-manufacturers
-      .ui.checkbox{ value: card_manufacturer.id, class: ('checked' if checked) }
-        - if checked
-          %input{:type => "checkbox", :checked => "checked" }
-        - else
-          %input{:type => "checkbox" }
-        %label #{card_manufacturer.name} (#{card_manufacturer.card_manufacturer_cards.where(card_id: @cards.pluck(:id)).count})
+  .resortable-manufacturers
+    - @card_manufacturers.each do |card_manufacturer|
+      - checked = @search_params[:card_manufacturer_ids] && @search_params[:card_manufacturer_ids].include?(card_manufacturer.id.to_s)
+      - count = card_manufacturer.card_manufacturer_cards.where(card_id: @cards.pluck(:id)).count
+      .inline.field.card-manufacturers.resortable-item{ value: count }
+        .ui.checkbox{ value: card_manufacturer.id, class: ('checked' if checked) }
+          - if checked
+            %input{:type => "checkbox", :checked => "checked" }
+          - else
+            %input{:type => "checkbox" }
+          %label #{card_manufacturer.name} (#{count})
   %h5 Seasons
-  - @seasons.each do |season|
-    - checked = @search_params[:seasons] && @search_params[:seasons].include?(season.to_s)
-    .inline.field.seasons
-      .ui.checkbox{ value: season, class: ('checked' if checked) }
-        - if checked
-          %input{:type => "checkbox", :checked => "checked" }
-        - else
-          %input{:type => "checkbox" }
-        %label #{season}-#{(season + 1)} (#{@cards.where(year: season).count})
+  .resortable-seasons
+    - @seasons.each do |season|
+      - checked = @search_params[:seasons] && @search_params[:seasons].include?(season.to_s)
+      - count = @cards.where(year: season).count
+      .inline.field.seasons.resortable-item{ value: count }
+        .ui.checkbox{ value: season, class: ('checked' if checked) }
+          - if checked
+            %input{:type => "checkbox", :checked => "checked" }
+          - else
+            %input{:type => "checkbox" }
+          %label #{season}-#{(season + 1)} (#{count})
   %h5 Sold
   - @available_options.each do |available_option|
     - checked = @search_params[:available_options] && @search_params[:available_options].include?(available_option.to_s)
