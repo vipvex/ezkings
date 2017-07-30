@@ -24,7 +24,7 @@ class Cart < ActiveRecord::Base
       items.push ({ 
         "name" => item.item.name,
         "description" => item.item.description,
-        "sku" => item.item.sku ? item.item.sku : "No SKU set",
+        "sku" => item.item.sku && !item.item.sku.empty? ? item.item.sku : "No SKU set",
         "price" => item.item.price,
         "currency" => "USD",
         "quantity" => item.quantity

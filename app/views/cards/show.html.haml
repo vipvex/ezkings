@@ -20,10 +20,16 @@
     .ui.form
       = form_for :cart, url: add_cart_item_path do |f|
         = f.hidden_field :card_id, value: @card.id
+        .fields.two
+          .field
+            = f.label :quantity
+            = select_tag :quantity, options_for_select(1..@card.available, 1), { class: 'ui dropdown fluid', id: 'card-quantity', name: 'cart[quantity]' } if @card.available?
+          .field
+            = f.label :price
+            $#{@card.price}
+
         .field
-          = f.select :quantity, options_for_select(1..@card.available, 1), {}, { class: 'ui dropdown', id: 'card-quantity' } if @card.available?
-        .field
-          = f.submit 'Add To Cart', class: "ui button blue #{'disabled' unless @card.available?}", id: "add-to-cart"
+          = f.submit 'Add To Cart', class: "ui large fluid button blue #{'disabled' unless @card.available?}", id: "add-to-cart"
 
 :javascript
   $(document).ready(function(){

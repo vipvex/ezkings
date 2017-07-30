@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
   post '/cart/add', :to => 'cart#add_cart_item', as: :add_cart_item
 
-  # Pages
-  get "/checklists/*url", to: "checklists#show"
-  
   resources :pages, except: [:show]
   get '', to: 'pages#home', as: :home
   get '/control', to: 'pages#control'
@@ -39,6 +36,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
 
+  # Pages
+  get "/checklists/*url", to: "checklists#show"
   get "/*url", to: "pages#show"
   
 end

@@ -16,20 +16,6 @@
       = f.text_field :url
     .field
       = f.text_area :content
-    .field
-      = f.label :layout
-      = f.text_field :layout
     .actions
       = f.submit
-      
-:javascript
-  var simplemde = new SimpleMDE({
-  	showIcons: ["code", "table"],
   
-    insertTexts: {
-  		horizontalRule: ["", "\n\n-----\n\n"],
-  		image: ["![](http://", ")"],
-  		link: ["[", "](http://)"],
-  		table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-  	}
-  });

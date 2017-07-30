@@ -1,6 +1,6 @@
 .item
   .image
-    = image_tag('card_placeholder.jpg', class: 'img')
+    = cl_image_tag item.item.front_image_url || 'image.png', class: 'ui image'
   .content
     %h3 #{item.item.name}
     .description
