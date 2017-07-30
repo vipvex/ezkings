@@ -82,6 +82,7 @@ class CardsController < ApplicationController
   # DELETE /cards/1.json
   def destroy
     @card.destroy
+    
     respond_to do |format|
       format.html { redirect_to cards_url, notice: 'Card was successfully destroyed.' }
       format.json { head :no_content }
