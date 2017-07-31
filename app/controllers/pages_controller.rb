@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   
     
   def home
+    @content = Page.find_by(name: 'home')
     @highlights_cards = CardHighlight.all.collect(&:card)    
     
     prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
@@ -46,7 +47,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to "/p/#{@page.url}", notice: 'Page was successfully created.' }
+        format.html { redirect_to "/#{@page.url}", notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -60,7 +61,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to "/p/#{@page.url}", notice: 'Page was successfully updated.' }
+        format.html { redirect_to "/#{@page.url}", notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
@@ -87,6 +88,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :url, :content, :layout)
+      params.require(:page).permit(:name, :url, :content, :layout, :show)
     end
 end

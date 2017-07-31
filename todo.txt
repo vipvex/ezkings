@@ -23,6 +23,7 @@ Copyright?
 
 
 Info for Clint:
+Good WYZYWIG Editor 
 Stripe
 Image Upload
 Heroku Login

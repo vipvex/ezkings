@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716204417) do
+ActiveRecord::Schema.define(version: 20170731202916) do
 
   create_table "attributes", force: :cascade do |t|
     t.string   "name"
@@ -151,8 +151,10 @@ ActiveRecord::Schema.define(version: 20170716204417) do
     t.string   "url"
     t.text     "content"
     t.string   "layout"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "show",       default: true
+    t.integer  "order"
   end
 
   create_table "players", force: :cascade do |t|

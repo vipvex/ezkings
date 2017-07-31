@@ -1,6 +1,6 @@
 =link_to card, class: 'ui card' do |c|
-  = cl_image_tag card.front_image_url, class: 'ui image' if card.back_image_url
-  = image_tag 'card_placeholder.jpg', class: 'ui image' unless card.back_image_url
+  = cl_image_tag card.front_image_url, class: 'ui image' if card.front_image_url
+  = image_tag 'card_placeholder.jpg', class: 'ui image' unless card.front_image_url
   .content
     %p
       #{card.name}

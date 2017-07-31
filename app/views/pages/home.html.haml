@@ -10,8 +10,9 @@
     
 
 .ui.centered.grid
-  .fourteen.wide.column.front-padding
-    %h1.ui.header.centered Latest Cards
+  .fourteen.wide.column
+    .ui.text.container.front-padding
+      %h1.ui.header.centered Latest Cards
     .ui.link.five.cards.doubling
       - @highlights_cards.each do |card|
         = render 'marketplace/card', card: card
@@ -28,4 +29,15 @@
   %p In nec lectus leo. Vestibulum ipsum massa, facilisis congue interdum vel, malesuada sit amet ante. Sed in dolor semper, viverra justo sed, laoreet purus. Fusce efficitur varius mollis. Etiam vulputate, dui ut ullamcorper dapibus, lectus lectus vestibulum lorem, id laoreet dui justo finibus arcu. Fusce mollis, magna et finibus gravida, libero neque interdum nisl, nec congue ligula nisi in metus. Integer fermentum ex magna, sed vestibulum nibh suscipit non. In magna tortor, lacinia vitae ornare vitae, interdum vulputate velit. Vestibulum vel sem porttitor, placerat lacus non, vehicula nunc. Suspendisse sit amet lacus nibh. Sed varius euismod imperdiet. Ut id augue quis nibh euismod scelerisque vitae et mi. Donec auctor leo nec accumsan pharetra. Etiam fermentum magna imperdiet fringilla iaculis. Pellentesque eu rhoncus lectus.
   
   %p Aliquam nec commodo ligula, in varius mauris. Nam eu quam eleifend, facilisis lacus sit amet, pharetra orci. Pellentesque a aliquam mauris, ut bibendum lorem. Maecenas quis diam et ex ornare aliquam dignissim non justo. Fusce condimentum, justo at mollis semper, neque dolor posuere urna, ac suscipit neque metus eu ex. Donec eros felis, rhoncus vel dolor id, semper tristique purus. Sed ut nulla at risus sodales porta ac non nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent fermentum ante nibh, vestibulum pretium risus vulputate a. Nunc lectus tortor, vehicula id neque eu, vulputate aliquam ligula. Proin pharetra vitae lectus sit amet vulputate. Quisque dictum dui ut mattis sagittis. Aenean ultrices, est non suscipit consectetur, nisl nunc ultrices turpis, vitae dapibus nisi purus sed justo.
-  
+
+.ui.vertical.center.aligned.segment.inverted
+  .ui.text.container.front-padding
+    %h2.ui.inverted.header.huge
+      Sign-Up For Product Updates
+      .ui.form{ style: 'padding-top: 2em' }
+        .fields
+          .three.wide.field
+          .twelve.wide.field
+            %input{:name => "shipping[first-name]", :placeholder => "name@gmail.com", :type => "email"}/
+            .ui.button.red.fluid.huge Sign Up!
+          .three.wide.field
