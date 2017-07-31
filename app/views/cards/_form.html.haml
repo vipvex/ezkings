@@ -33,12 +33,12 @@
         .field
           = f.label :front_image_url
           = f.hidden_field :front_image_url
-          = cl_image_upload_tag(:front_image)
+          = cl_image_upload_tag(:front_image, angle: 'auto')
           #front-image-preview
         .field
           = f.label :back_image_url
           = f.hidden_field :back_image_url
-          = cl_image_upload_tag(:back_image)
+          = cl_image_upload_tag(:back_image, angle: 'auto')
           #back-image-preview
         
     .field

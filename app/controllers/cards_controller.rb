@@ -38,7 +38,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     
     if params[:file].present?
-      preloaded = Cloudinary::PreloadedFile.new(params[:file])         
+      preloaded = Cloudinary::PreloadedFile.new(params[:file], angle: 'a_ignore')   
       raise "Invalid upload signature" if !preloaded.valid?
       @card.front_image_url = preloaded.identifier
     end
