@@ -48,7 +48,7 @@
     .two.fields
       .field
         %h5 Attributes
-        = select_tag 'card[card_attributes_ids]', options_for_select( @attributes.map { |a| [a.name, a.id] }, @card.card_attributes.map { |c| c.attribute_id } ), :class => 'ui fluid dropdown', :multiple => true
+        = select_tag 'card[c_attribute_ids]', options_for_select( @attributes.map { |a| [a.name, a.id] }, @card.card_attributes.map { |c| c.attribute_id } ), :class => 'ui fluid dropdown', :multiple => true
         %h5 Players
         = select_tag 'card[player_ids]', options_for_select( @players.map { |p| [p.name, p.id] }, @card.card_players.map { |c| c.player_id } ), :class => 'ui fluid dropdown', :multiple => true
       .field

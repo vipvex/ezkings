@@ -1,17 +1,16 @@
-.card
-  =link_to card, class: 'image' do |c|
-    = cl_image_tag card.front_image_url, class: 'ui' if card.back_image_url
-    = image_tag 'card_placeholder.jpg', class: 'ui' unless card.back_image_url
+=link_to card, class: 'ui card' do |c|
+  = cl_image_tag card.front_image_url, class: 'ui image' if card.back_image_url
+  = image_tag 'card_placeholder.jpg', class: 'ui image' unless card.back_image_url
   .content
-    %h5 
+    %p
       #{card.name}
       - unless card.c_attributes.where(name: 'Rookie').empty?
         %span.ui.label.yellow.mini= "RY"
-    .ui #{card.players.first.name} #{card.serial_number}
+    %strong #{card.players.first.name} #{card.serial_number}
 
     .ui.centered
-      %strong.text-blye $#{card.price} 
-      %span{ style: 'color: gray' } (#{card.available} Available)
+      %span $#{card.price} 
+      %span (#{card.available} Available)
       
 
   /.ui.two.bottom.attached.buttons
