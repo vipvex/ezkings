@@ -2,13 +2,13 @@
 
 <h1>Listing Pages</h1>
 
-<table>
+<table class="ui table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Url</th>
       <th>Content</th>
-      <th>Layout</th>
+      <th>Order</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,8 +18,8 @@
       <tr>
         <td><%= page.name %></td>
         <td><%= page.url %></td>
-        <td><%= page.content %></td>
-        <td><%= page.layout %></td>
+        <td><%= page.content.truncate(100, omission: ' ...') %></td>
+        <td><%= page.order %></td>
         <td><%= link_to 'Show', page %></td>
         <td><%= link_to 'Edit', edit_page_path(page) %></td>
         <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>

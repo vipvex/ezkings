@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/meta' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/tags' %>
+</head>
+<body>
+
+<%= render 'layouts/nav' %>
+
+<div class="ui main container segment" style="padding: 0px;">
+  <div class="ui"> 
+  
+  <% if flash[:notice] %>
+    <div class="ui message container">
+      <i class="close icon"></i>
+      <div class="header">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= yield %>
+  </div>
+</div>
+
+</body>
+</html>

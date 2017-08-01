@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'full_width', :only => [:home]
+  layout 'full_width_no_padding', :only => [:home]
   
   before_action :set_page, only: [:edit, :update, :destroy]
 
@@ -13,8 +13,9 @@ class PagesController < ApplicationController
   
     
   def home
-    @content = Page.find_by(name: 'home')
+    @content = Page.find_by(name: 'home').content
     @highlights_cards = CardHighlight.all.collect(&:card)    
+    @recently_added_cards = Card.last(10)
     
     prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
   end
@@ -88,6 +89,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :url, :content, :layout, :show)
+      params.require(:page).permit(:name, :url, :content, :layout, :show, :order)
     end
 end

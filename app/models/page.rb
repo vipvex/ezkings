@@ -1,3 +1,5 @@
 class Page < ActiveRecord::Base
-  validates :name, :url, :content, :show, presence: true
+  validates :name, :url, :order, presence: true
+  
+  scope :shown, -> { where(show: true) }
 end
