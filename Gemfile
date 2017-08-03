@@ -69,3 +69,4 @@ gem 'meta-tags'
 gem 'sitemap_generator'
 gem 'human_power'
 gem 'rails_12factor'
+gem 'whenever', :require => false
