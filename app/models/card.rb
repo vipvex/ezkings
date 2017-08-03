@@ -1,4 +1,6 @@
 class Card < ActiveRecord::Base
+  validates :name, :year, :description, :price, :available, :serial_number, :sku, presence: true
+  
   has_many :card_attributes, dependent: :destroy
   has_many :card_manufacturer_cards, dependent: :destroy
   has_many :card_teams, dependent: :destroy
