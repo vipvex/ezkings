@@ -1,2 +1,2 @@
 disallow :none
-sitemap home_url
+sitemap "http://www.ezkingscards.com/sitemap.xml.gz"
