@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :pages, except: [:show]
   get '', to: 'pages#home', as: :home
+  get '/contact-us', to: 'pages#contact-us', as: :contact_us
   get '/control', to: 'pages#control'
 
 
@@ -35,10 +36,6 @@ Rails.application.routes.draw do
   resources :card_manufacturer_cards
 
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
-
-
-  # TEST
-  post '/charge_camp', to: "cart_controller#charge_camp"
 
   # Pages
   get "/checklists/*url", to: "checklists#show"
