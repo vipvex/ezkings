@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
 
   # TEST
-  post 'charge_camp', to: "cart_controller#charge_camp"
+  post '/charge_camp', to: "cart_controller#charge_camp"
 
   # Pages
   get "/checklists/*url", to: "checklists#show"

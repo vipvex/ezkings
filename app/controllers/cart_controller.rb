@@ -1,5 +1,8 @@
 class CartController < ApplicationController
   before_action :authenticate_user!
+
+  protect_from_forgery :except => [:charge_camp]
+
   
   def cart
     @cart = current_user.cart
