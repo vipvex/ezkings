@@ -21,4 +21,8 @@ class Card < ActiveRecord::Base
     players.first.try(:name)
   end
   
+  def to_param
+    [id, name.parameterize].join("-")
+  end
+  
 end
