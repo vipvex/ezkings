@@ -6,7 +6,7 @@
       #{card.name}
       - unless card.c_attributes.where(name: 'Rookie').empty?
         %span.ui.label.yellow.mini= "RY"
-    %strong #{card.players.first.name} #{card.serial_number}
+    %strong #{card.player_name} #{card.serial_number}
 
     .ui.centered
       %span $#{card.price} 

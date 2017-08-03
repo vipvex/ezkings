@@ -15,4 +15,8 @@ class Card < ActiveRecord::Base
     self.available > 0
   end
   
+  def player_name
+    players.first.try(:name)
+  end
+  
 end

@@ -95,6 +95,29 @@ class CartController < ApplicationController
     end
   end
   
+  
+  # TEST
+  
+  def charge_camp
+    # Set your secret key: remember to change this to your live secret key in production
+    # See your keys here: https://dashboard.stripe.com/account/apikeys
+    Stripe.api_key = "sk_test_KZO10MY1szX06lOwBhTb6tmC"
+    
+    # Token is created using Stripe.js or Checkout!
+    # Get the payment token ID submitted by the form:
+    token = params[:stripeToken]
+    
+    # Charge the user's card:
+    charge = Stripe::Charge.create(
+      :amount => 84900,
+      :currency => "usd",
+      :description => "Camp Charge",
+      :source => token,
+    )
+    
+    render :json => { name: "boom! Success" }
+  end
+  
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

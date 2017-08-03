@@ -36,6 +36,10 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
 
+
+  # TEST
+  post 'charge_camp', to: "cart_controller#charge_camp"
+
   # Pages
   get "/checklists/*url", to: "checklists#show"
   get "/*url", to: "pages#show"

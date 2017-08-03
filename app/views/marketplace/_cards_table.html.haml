@@ -10,7 +10,7 @@
     - @cards.each do |card|
       %tr
         %td.selectable= link_to card.name, card 
-        %td.selectable= link_to card.players.first.name, card
+        %td.selectable= link_to card.player_name, card
         %td.selectable= link_to card.teams.first.name, card
         %td.selectable= link_to card.price, card
         %td.selectable= link_to card.available, card
