@@ -20,6 +20,10 @@ class PagesController < ApplicationController
     prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
   end
 
+  def contact_us
+    
+  end
+
   def control
   end
 
