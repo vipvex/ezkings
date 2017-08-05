@@ -14,7 +14,7 @@
       .menu
         - Page.shown.order(:order).each do |page|
           = link_to(page.name, "/#{page.url}", class: 'item')
-        = link_to('Contact Us', "", class: 'item')
+        = link_to('Contact Us', contact_us_path, class: 'item')
     .ui.dropdown.simple.item
       Checklists
       %i.dropdown.icon

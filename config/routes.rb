@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :pages, except: [:show]
   get '', to: 'pages#home', as: :home
-  get '/contact-us', to: 'pages#contact-us', as: :contact_us
+  get '/contact-us', to: 'pages#contact_us', as: :contact_us
   get '/control', to: 'pages#control'
 
 
