@@ -17,11 +17,13 @@ class PagesController < ApplicationController
     @highlights_cards = CardHighlight.all.collect(&:card)    
     @recently_added_cards = Card.last(10)
     
-    prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace")
+    prepare_meta_tags(title: "EZ Kings Cards: The Best LA Kings Hokey Card Store", 
+                      site: '',
+                      description: 'EZ Kings Card\'s is the best LA Kings hokey cards marketplace. Buy cards online!')
   end
 
   def contact_us
-    
+    prepare_meta_tags(title: "Contact Us") 
   end
 
   def control
@@ -30,8 +32,8 @@ class PagesController < ApplicationController
   def show
     @page = Page.find_by(url: params[:url]) or not_found
     
-    prepare_meta_tags(title: "LA Kings Hokey Cards Marketplace",
-                      description: "",
+    prepare_meta_tags(title: @page.name,
+                      description: @page.short_content,
                       keywords: "")
   end
 

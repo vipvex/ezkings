@@ -15,11 +15,12 @@ class ApplicationController < ActionController::Base
   before_action :prepare_meta_tags, if: "request.get?"
 
   def prepare_meta_tags(options={})
-    site_name   = "EZ Kings"
+    site_name   = "EZ Kings Cards"
     title       = [controller_name, action_name].join(" ")
     description = "Buy LA Kings hockey cards online with EZ Kings. Find roockie cards. Shiping ontime."
     image       = options[:image] || "your-default-image-url"
     current_url = request.url
+    reverse     = true
 
     # Let's prepare a nice set of defaults
     defaults = {
@@ -28,6 +29,7 @@ class ApplicationController < ActionController::Base
       image:       image,
       description: description,
       keywords:    %w[ez kings ezkings lakings hokeycards buy],
+      reverse:     reverse,
       twitter: {
         site_name: site_name,
         site: '@ezkings',
