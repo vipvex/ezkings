@@ -22,7 +22,7 @@ SitemapGenerator::Sitemap.create do
   add marketplace_search_path, :priority => 1, :changefreq => 'daily'
 
   Page.find_each do |page|
-     add page.url, :lastmod => page.updated_at
+     add page.url, :lastmod => page.updated_at if page.show
   end
   
   
