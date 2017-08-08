@@ -6,8 +6,8 @@
           %h4.header $#{card.price} | #{card.available} available
           .ui.button.blue Add To Cart
         .left.floated.content
-          = cl_image_tag card.front_image_url, class: 'ui image small' if card.back_image_url
-          = image_tag 'card_placeholder.jpg', class: 'ui image small' unless card.back_image_url
+          = cl_image_tag card.front_image_url, alt: @card.name, title: @card.description, class: 'ui image small' if card.back_image_url
+          = image_tag 'card_placeholder.jpg', alt: @card.name, title: @card.description, class: 'ui image small' unless card.back_image_url
         .content
           %h3.header= card.name
           %p.description= card.description

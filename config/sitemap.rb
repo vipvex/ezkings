@@ -21,17 +21,17 @@ SitemapGenerator::Sitemap.create do
   add marketplace_path, :priority => 1, :changefreq => 'daily'
   add marketplace_search_path, :priority => 1, :changefreq => 'daily'
 
+
+  Card.find_each do |card|
+     add "cards/#{card.to_param}", :priority => 0.9, :lastmod => card.updated_at
+  end
+
   Page.find_each do |page|
      add page.url, :lastmod => page.updated_at if page.show
   end
   
-  
   Checklist.find_each do |checklist|
      add checklist.url, :lastmod => checklist.updated_at
-  end
-
-  Card.find_each do |card|
-     add "cards/#{card.to_param}", :priority => 0.9, :lastmod => card.updated_at
   end
   
   

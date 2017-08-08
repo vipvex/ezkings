@@ -9,9 +9,10 @@ class CardsController < ApplicationController
     @cards = Card.all
   end
 
-  # GET /cards/1
-  # GET /cards/1.json
+  
   def show
+    prepare_meta_tags(title: @card.name,
+                      description: @card.description)
   end
 
   # GET /cards/new

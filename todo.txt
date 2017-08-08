@@ -1,12 +1,10 @@
 SEO
   https://blog.kissmetrics.com/seo-guide/
   
-  Setup google analytics
-  Images should have alt tags
-  Image link names should be relevant - rename image links on upload
-  Make sure many well regarded sites link to EZ kings with links that are called "ez kings" and "cards" because it makes the page trustworthy
+  Connonical urls
+  The best solution is to 301 redirect all non-canonical versions of the home page URL to the official version you want to show to users and to rank in the SERPS. If you can’t do that, the next best solution is to at least make sure the duplicate version of the URL have the canonical tag on them pointing to the canonical or official version of the URL.
   Add 404 page
-  
+  Setup google analytics
   
 
 Copyright?

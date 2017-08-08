@@ -5,10 +5,10 @@
       .sides
         .active.side
           .ui.image
-            = cl_image_tag @card.front_image_url || 'image.png', class: 'ui image'
+            = cl_image_tag @card.front_image_url || 'image.png', alt: @card.name, title: @card.description, class: 'ui image'
         .side
           .ui.image
-            = cl_image_tag @card.back_image_url || 'image.png', class: 'ui image'
+            = cl_image_tag @card.back_image_url || 'image.png', alt: @card.name, title: @card.description, class: 'ui image'
     .ui.one.bottom.attached.buttons
       .ui.button.flip
         %i.exchange.icon

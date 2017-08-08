@@ -2,5 +2,5 @@
   - @view_cards.each do |card|
     .card
       =link_to card, class: 'image' do |c|
-        = cl_image_tag card.front_image_url, class: 'ui' if card.back_image_url
+        = cl_image_tag card.front_image_url, alt: @card.name, title: @card.description, class: 'ui' if card.back_image_url
         = image_tag 'card_placeholder.jpg', class: 'ui' unless card.back_image_url

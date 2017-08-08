@@ -71,3 +71,5 @@ gem 'human_power'
 gem 'rails_12factor'
 gem 'whenever', :require => false
 gem "gretel"
+gem 'hide_heroku'
+gem 'rack-canonical-host'
