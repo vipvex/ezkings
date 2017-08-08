@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       title:       title,
       image:       image,
       description: description,
-      keywords:    %w[ez kings ezkings lakings hokeycards buy],
+      keywords:    %w[ez kings ezkings cards hokey buy lakings la los angeles collectible trading store marketplace],
       reverse:     reverse,
       twitter: {
         site_name: site_name,

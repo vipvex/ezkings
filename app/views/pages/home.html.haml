@@ -1,8 +1,8 @@
 .ui.vertical.center.aligned.segment.masthead.inverted.meadmastr.banner
   .ui.text.container.front-padding
-    = image_tag 'logo.png', class: 'ui image large centered'
+    = image_tag 'logo.png', alt: 'EZ Kings Logo Shield', class: 'ui image large centered'
     %h1.ui.inverted.header.huge
-      EZ Kings Hokey Card Store
+      EZ Kings Cards Marketplace
     %h3.ui.inverted.header The Best LA Kings Hokey Cards
     = link_to marketplace_path, class: 'ui huge primary button' do
       View Marketplace
@@ -18,7 +18,7 @@
         = render 'marketplace/card', card: card
 
 .ui.text.container.front-padding
-  = image_tag 'http://res.cloudinary.com/vipvex/image/upload/cnondmrg1hmwy0vtpswu', class: 'ui image medium floated right'
+  = image_tag 'http://res.cloudinary.com/vipvex/image/upload/cnondmrg1hmwy0vtpswu', alt: 'EZ Kings Logo Large', class: 'ui image medium floated right'
 
   %h2.ui.header Made for Player Collectors & Set Builders 
   %p Lorem Impsum 

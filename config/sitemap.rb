@@ -18,12 +18,13 @@ SitemapGenerator::Sitemap.create do
   # Add '/articles'
   #
   
+
   add marketplace_path, :priority => 1, :changefreq => 'daily'
   add marketplace_search_path, :priority => 1, :changefreq => 'daily'
 
 
   Card.find_each do |card|
-     add "cards/#{card.to_param}", :priority => 0.9, :lastmod => card.updated_at
+     add "cards/#{card.to_param}", :priority => 0.8, :lastmod => card.updated_at
   end
 
   Page.find_each do |page|

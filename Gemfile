@@ -73,3 +73,4 @@ gem 'whenever', :require => false
 gem "gretel"
 gem 'hide_heroku'
 gem 'rack-canonical-host'
+gem 'canonical-rails', github: 'jumph4x/canonical-rails'
