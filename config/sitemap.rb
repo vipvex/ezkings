@@ -24,7 +24,7 @@ SitemapGenerator::Sitemap.create do
 
 
   Card.find_each do |card|
-     add "cards/#{card.to_param}", :priority => 0.8, :lastmod => card.updated_at
+     add "cards/#{card.to_param}", :priority => 0.8, :lastmod => card.updated_at, :changefreq => 'daily'
   end
 
   Page.find_each do |page|
