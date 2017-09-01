@@ -5,11 +5,11 @@
     %p
       #{card.name}
       - unless card.c_attributes.where(name: 'Rookie').empty?
-        %span.ui.label.yellow.mini= "RY"
+        %span.ui.label.yellow.mini= "RK"
     %strong #{card.player_name} #{card.serial_number}
 
     .ui.centered
-      %span $#{card.price} 
+      %span{ style: 'font-weight: bold; color: #662d91;' } $#{card.price} 
       %span (#{card.available} Available)
       
 

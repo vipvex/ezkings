@@ -1,10 +1,10 @@
-.ui.vertical.center.aligned.segment.masthead.inverted.meadmastr.banner
+.ui.vertical.center.aligned.segment.masthead.inverted.banner
   .ui.text.container.front-padding
     = image_tag 'logo.png', alt: 'EZ Kings Logo Shield', class: 'ui image large centered'
-    %h1.ui.inverted.header.huge
-      EZ Kings Cards Marketplace
-    %h3.ui.inverted.header The Best LA Kings Hokey Cards
-    = link_to marketplace_path, class: 'ui huge primary button' do
+    %h1.ui.header.huge
+      The #1 Marketplace For Los Angeles Hockey Trading Cards
+    / %h3.ui.inverted.header
+    = link_to marketplace_path, class: 'ui button huge primary king-purple' do
       View Marketplace
       %i.right.arrow.icon
     
@@ -12,25 +12,45 @@
 .ui.centered.grid
   .fourteen.wide.column
     .ui.text.container.front-padding
-      %h2.ui.header.centered Latest Cards
+      %h2.ui.header.centered Featured Cards
     .ui.link.five.cards.doubling
       - @highlights_cards.each do |card|
         = render 'marketplace/card', card: card
 
 .ui.text.container.front-padding
-  = image_tag 'http://res.cloudinary.com/vipvex/image/upload/cnondmrg1hmwy0vtpswu', alt: 'EZ Kings Logo Large', class: 'ui image medium floated right'
+  %h2.ui.header.centered Collectors Zone
+  %h3.ui.header.centered Collecting Los Angeles Kings hockey trading cards is a fun and exciting way to show your loyalty to your favorite team and spend quality time with your friends, family and fans. It offers something for all ages…
 
-  %h2.ui.header Made for Player Collectors & Set Builders 
-  %p Lorem Impsum 
+  .ui.middle.aligned.list
+    .item
+      .right.floated.content
+        .ui.button.king-purple Checklists
+      /%img.ui.avatar.image{:src => "/images/avatar2/small/lena.png"}/
+      .content
+        Use the checklists to identify Los Angeles Kings cards to help build your collection.
+    .item
+      .right.floated.content
+        .ui.button.king-purple Glossary
+      /%img.ui.avatar.image{:src => "/images/avatar2/small/lindsay.png"}/
+      .content
+        Learn the lingo of the hobby with a list of common terminology.
+    .item
+      .right.floated.content
+        .ui.button.king-purple Checklists
+      /%img.ui.avatar.image{:src => "/images/avatar2/small/mark.png"}/
+      .content
+        Read about the history of hockey trading cards.
+
+  
 
         
 .ui.text.container.front-padding
   = raw @content if @content
 
-.ui.vertical.center.aligned.segment.inverted
+.ui.vertical.center.aligned.segment.banner_reg
   .ui.text.container.front-padding
-    %h2.ui.header.centered.inverted The Easiest And Fasest Way To Order Cards Online
-    = link_to "users/sign_up", class: 'ui large primary button' do
+    %h2.ui.header.centered.inverted Do Your Research And Utilize The Filters In The Marketplace To Find The Right Cards For You!
+    = link_to "users/sign_up", class: 'ui large primary button king-purple' do
       Register
       %i.right.arrow.icon
     %br
@@ -39,7 +59,7 @@
 .ui.centered.grid
   .fourteen.wide.column
     .ui.text.container.front-padding
-      %h2.ui.header.centered Marketplace Recently Added 
+      %h2.ui.header.centered Recently Added To Marketplace 
     .ui.link.five.cards.doubling
       - @recently_added_cards.each do |card|
         = render 'marketplace/card', card: card

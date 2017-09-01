@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .banner {
-  background-image: url(asset-path("backdrop.jpg")) !important;
+  background-image: url(asset-path("ice_background.jpg")) !important;
   background-position: center !important; 
+}
+
+.banner_reg {
+  background-image: url(asset-path("hockey_wood.jpg")) !important;
+  background-position: 0px 27% !important;
+  background-size: 100% !important;
 }
