@@ -1,6 +1,5 @@
 Contact us link should go to contact us
 Contact us form should do something
-
 SSL Certificate should be linked
 
 
