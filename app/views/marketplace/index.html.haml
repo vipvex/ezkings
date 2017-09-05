@@ -45,29 +45,30 @@
     sortItems(".resortable-teams")
     sortItems(".resortable-manufacturers")
     sortItems(".resortable-seasons")
-    showLess();
+    showLess("players");
+    showLess("teams");
 
   });
   
-  function showMore(){
+  function showMore(list){
       
-    var listChildren = $(".players").show();
+    var listChildren = $("." + list).show();
     
-    $("#show-more").hide();
-    $("#show-less").show();
+    $("#show-more-" + list).hide();
+    $("#show-less-" + list).show();
   }
   
-  function showLess() {
+  function showLess(list) {
     var showCount = 5; 
-    var listChildren = $(".players");
+    var listChildren = $("." + list);
     listChildren.hide();
     
     for(var a = 0; a < showCount; a++){
       $(listChildren[a]).show();
     }
     
-    $("#show-less").hide();
-    $("#show-more").show();
+    $("#show-less-" + list).hide();
+    $("#show-more-" + list).show();
   }
   
   

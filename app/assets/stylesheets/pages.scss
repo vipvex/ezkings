@@ -3,8 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .banner {
-  background-image: url(asset-path("ice_background.jpg")) !important;
-  background-position: center !important; 
+    background-image: url(asset-path("hockey_ice.jpg")) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
 .banner_reg {

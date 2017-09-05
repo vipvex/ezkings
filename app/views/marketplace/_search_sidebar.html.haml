@@ -32,8 +32,8 @@
           - else
             %input{:type => "checkbox" }
           %label #{player.name} (#{count})
-  %a#show-more{ href: '#', onclick: 'showMore(); return false;' } Show More
-  %a#show-less{ href: '#', onclick: 'showLess(); return false;' } Show Less
+  %a#show-more-players{ href: '#', onclick: 'showMore("players"); return false;' } Show More
+  %a#show-less-players{ href: '#', onclick: 'showLess("players"); return false;' } Show Less
   
   %h5 Teams
   .resortable-teams
@@ -47,6 +47,8 @@
           - else
             %input{:type => "checkbox" }
           %label #{team.name} (#{count})
+  %a#show-more-teams{ href: '#', onclick: 'showMore("teams"); return false;' } Show More
+  %a#show-less-teams{ href: '#', onclick: 'showLess("teams"); return false;' } Show Less
   %h5 Manufactureres
   .resortable-manufacturers
     - @card_manufacturers.each do |card_manufacturer|

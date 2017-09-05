@@ -2,7 +2,7 @@
   .ui.text.container.front-padding
     = image_tag 'logo.png', alt: 'EZ Kings Logo Shield', class: 'ui image large centered'
     %h1.ui.header.huge
-      The #1 Marketplace For Los Angeles Hockey Trading Cards
+      The #1 Marketplace For Los Angeles Kings Hockey Trading Cards
     / %h3.ui.inverted.header
     = link_to marketplace_path, class: 'ui button huge primary king-purple' do
       View Marketplace
@@ -22,22 +22,19 @@
   %h3.ui.header.centered Collecting Los Angeles Kings hockey trading cards is a fun and exciting way to show your loyalty to your favorite team and spend quality time with your friends, family and fans. It offers something for all ages…
 
   .ui.middle.aligned.list
-    .item
+    = link_to '/checklists', class: 'item' do
       .right.floated.content
         .ui.button.king-purple Checklists
-      /%img.ui.avatar.image{:src => "/images/avatar2/small/lena.png"}/
       .content
         Use the checklists to identify Los Angeles Kings cards to help build your collection.
-    .item
+    = link_to '/gloassary', class: 'item' do
       .right.floated.content
         .ui.button.king-purple Glossary
-      /%img.ui.avatar.image{:src => "/images/avatar2/small/lindsay.png"}/
       .content
         Learn the lingo of the hobby with a list of common terminology.
-    .item
+    = link_to '/history', class: 'item' do
       .right.floated.content
-        .ui.button.king-purple Checklists
-      /%img.ui.avatar.image{:src => "/images/avatar2/small/mark.png"}/
+        .ui.button.king-purple History
       .content
         Read about the history of hockey trading cards.
 
@@ -49,12 +46,12 @@
 
 .ui.vertical.center.aligned.segment.banner_reg
   .ui.text.container.front-padding
-    %h2.ui.header.centered.inverted Do Your Research And Utilize The Filters In The Marketplace To Find The Right Cards For You!
+    %h2.ui.header.centered.inverted.yellow Do Your Research And Utilize The Filters In The Marketplace To Find The Right Cards For You!
     = link_to "users/sign_up", class: 'ui large primary button king-purple' do
       Register
       %i.right.arrow.icon
     %br
-    = link_to "Or Go To Marketplace", marketplace_path, class: 'ui', style: 'color: white; margin-top: 1em'
+    = link_to "Or Go To Marketplace", marketplace_path, class: 'ui', style: 'color: #FFE21F !important; margin-top: 1em'
 
 .ui.centered.grid
   .fourteen.wide.column
@@ -70,5 +67,5 @@
     = render 'mailchimp_subscribe'
 
 .ui.text.container.front-padding
-  %p.ui{ style: 'text-align: center' } © 2017 EZ Kings Card LLC, All Rights Reserved  
+  %p.ui{ style: 'text-align: center' } © 2017 EZ Kings Cards, All Rights Reserved
   

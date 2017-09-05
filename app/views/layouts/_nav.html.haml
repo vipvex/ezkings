@@ -8,6 +8,9 @@
     = link_to marketplace_path, class: 'ui item link' do |f|
       %i.grid.layout.icon
       Marketplace
+    = link_to checklists_path, class: 'ui item link' do |f|
+      %i.grid.layout.icon
+      Checklists
     .ui.dropdown.simple.item
       More
       %i.dropdown.icon
@@ -15,12 +18,6 @@
         - Page.shown.order(:order).each do |page|
           = link_to(page.name, "/#{page.url}", class: 'item')
         = link_to('Contact Us', contact_us_path, class: 'item')
-    .ui.dropdown.simple.item
-      Checklists
-      %i.dropdown.icon
-      .menu
-        - Checklist.order(:order).all.each do |p|
-          = link_to(p.name, "/checklists/#{p.url}", class: 'item')
     
     - if current_user && current_user.admin?
       = link_to control_path, class: 'ui item link' do |f|
