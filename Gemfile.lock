@@ -131,6 +131,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    mailgun-ruby (1.1.6)
+      rest-client (~> 2.0)
     measured (2.0.0)
       activesupport (>= 4.2)
     meta-tags (2.4.1)
@@ -282,6 +284,7 @@ DEPENDENCIES
   human_power
   jbuilder (~> 2.0)
   jquery-rails
+  mailgun-ruby (~> 1.1.6)
   meta-tags
   paperclip (~> 4.1)
   pg (= 0.20.0)

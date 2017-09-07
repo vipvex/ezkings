@@ -27,9 +27,24 @@ class PagesController < ApplicationController
   end
   
   def contact_message
+    
+    
+    # First, instantiate the Mailgun Client with your API key
+    mg_client = Mailgun::Client.new 'key-9737cd05379b3a299a36a35520ff43c3'
+    
+    # Define your message parameters
+    message_params =  { from: params[:email],
+                        to:   'alexander@alexandersacademy.org',
+                        subject: params[:subject],
+                        text:    params[:message]
+                      }
+    
+    # Send your message through the client
+    mg_client.send_message 'sandbox5fc213c9dd9e47fb8eb66a9d931faaff.mailgun.org', message_params
+    
     respond_to do |format|
       # Sends email to user when user is created.
-      ContactUsMailer.contact_us(params[:email], params[:subject], params[:message]).deliver
+      #ContactUsMailer.contact_us(params[:email], params[:subject], params[:message]).deliver
 
       format.html { redirect_to :back, notice: 'Email sent!' }
     end

@@ -1,8 +1,7 @@
-Contact us link should go to contact us
-Contact us form should do something
 SSL Certificate should be linked
 
 
+Chagne mailgun credentialsto ezkings
 
 SEO
   https://blog.kissmetrics.com/seo-guide/
