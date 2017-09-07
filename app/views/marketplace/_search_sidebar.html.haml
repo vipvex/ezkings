@@ -66,7 +66,8 @@
     - @seasons.each do |season|
       - checked = @search_params[:seasons] && @search_params[:seasons].include?(season.to_s)
       - count = @cards.where(year: season).count
-      .inline.field.seasons.resortable-item{ value: count }
+      /.resortable-item{ value: count }
+      .inline.field.seasons
         .ui.checkbox{ value: season, class: ('checked' if checked) }
           - if checked
             %input{:type => "checkbox", :checked => "checked" }

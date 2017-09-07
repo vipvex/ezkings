@@ -1,1 +1,11 @@
-= mail_to 'blsca@yahoo.com', "Email Me"
+%h1.ui.header.centered Contact Us
+= form_for contact_form_path, html: { class: 'ui form' } do |f|
+  = label_tag :email
+  = email_field_tag :email
+  %br
+  = label_tag :subject
+  = text_field_tag :subject
+  %br
+  = label_tag :message
+  = text_area_tag :message
+  = submit_tag 'Send', class: 'button ui large blue'

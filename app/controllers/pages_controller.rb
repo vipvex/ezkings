@@ -25,6 +25,15 @@ class PagesController < ApplicationController
   def contact_us
     prepare_meta_tags(title: "Contact Us") 
   end
+  
+  def contact_message
+    respond_to do |format|
+      # Sends email to user when user is created.
+      ContactUsMailer.contact_us(params[:email], params[:subject], params[:message]).deliver
+
+      format.html { redirect_to :back, notice: 'Email sent!' }
+    end
+  end
 
   def control
   end

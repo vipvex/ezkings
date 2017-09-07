@@ -6,7 +6,7 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    @cards = Card.order(sku: :ASC)
   end
 
   

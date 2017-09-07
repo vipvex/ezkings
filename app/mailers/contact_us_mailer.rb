@@ -1,5 +1,5 @@
 class ContactUsMailer < ApplicationMailer
-  default from: "contact_us@ezkingscards.com"
+  default from: "ez@ezkingscards.com"
 
   def contact_us(email, subject, message)
     @message = message

@@ -18,11 +18,13 @@ Rails.application.routes.draw do
   delete '/cart/remove', :to => 'cart#remove_item', as: :remove_cart_item
   post '/cart/add', :to => 'cart#add_cart_item', as: :add_cart_item
 
+  post '/contact-us', to: 'pages#contact_message', as: :contact_form
   resources :pages, except: [:show]
   get '', to: 'pages#home', as: :home
   get '/contact-us', to: 'pages#contact_us', as: :contact_us
   get '/control', to: 'pages#control'
-
+  
+  
 
   resources :card_highlights
   resources :shipping_options
