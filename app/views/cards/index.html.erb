@@ -5,7 +5,10 @@
 <%= link_to 'Attributes', attributes_path %> |
 <%= link_to 'Card Manifacturer', card_manufacturers_path %> |
 <%= link_to 'Team', teams_path %> |
-<%= link_to 'Player', players_path %>
+<%= link_to 'Player', players_path %> |
+
+<%= link_to 'New Card', new_card_path %>
+
 
 <table class="ui table">
   <thead>
@@ -34,7 +37,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Card', new_card_path %>
