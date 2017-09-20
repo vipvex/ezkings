@@ -17,9 +17,9 @@ class PagesController < ApplicationController
     @highlights_cards = CardHighlight.all.collect(&:card)    
     @recently_added_cards = Card.last(10)
     
-    prepare_meta_tags(title: "EZ Kings Cards: The Best LA Kings Hokey Card Store", 
+    prepare_meta_tags(title: "EZ Kings Cards: The #1 Marketplace For Los Angeles Kings Hockey Trading Cards", 
                       site: '',
-                      description: 'EZ Kings Card\'s is the best LA Kings hokey cards marketplace. Buy cards online!')
+                      description: 'EZ Kings Card\'s is The Best LA Kings Hockey Cards Marketplace. Buy Cards Online!')
   end
 
   def contact_us

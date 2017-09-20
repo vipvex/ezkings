@@ -16,8 +16,9 @@ class MarketplaceController < ApplicationController
     @cards = Card.where('available > 0')
     @view_cards = @cards.paginate(:page => params[:page], :per_page => search_params[:per_page_options] || @page_options[@default_page_option])
     
-    prepare_meta_tags(title: 'LA Kings Cards Marketplace',
-                      description: 'Shop at EZ Kings Card\'s extensive selection of the best LA Kings hokey cards.')
+    prepare_meta_tags(title: 'Buy Upper Deck and Panini Los Angeles Kings hockey trading cards online | EZ Kings Cards',
+                      site: '',
+                      description: 'Shop at EZ Kings Card\'s extensive selection of the best LA Kings hockey cards.')
   end
 
   def search

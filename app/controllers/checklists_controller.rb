@@ -12,7 +12,10 @@ class ChecklistsController < ApplicationController
   # GET /checklists/1
   # GET /checklists/1.json
   def show
-    puts "\n#{params[:url]}\n"
+    prepare_meta_tags(title: @checklist.name,
+                      description: @checklist.short_content,
+                      keywords: "")
+                      
     @checklist = Checklist.find_by(url: params[:url])
   end
 

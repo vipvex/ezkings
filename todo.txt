@@ -1,6 +1,3 @@
-SSL Certificate should be linked
-
-
 Chagne mailgun credentialsto ezkings
 
 SEO
