@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
   end
   
   def player_name
-    players.first.try(:name)
+    players.collect { |p| p.try(:name) }.join(' ')
   end
   
   def to_param
