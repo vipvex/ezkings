@@ -11,7 +11,7 @@ class CartController < ApplicationController
   
   def update
     @cart = Cart.find(cart_params[:cart_id])
-    @cart.update(zip_code: cart_params[:zip_code], country: cart_params[:country], shipping_option_id: cart_params[:shipping_option_id])
+    @cart.update(zip_code: cart_params[:zip_code], country: cart_params[:country], shipping_option_id: cart_params[:shipping_option_id], state: cart_params[:state])
     
     redirect_to cart_path
   end
@@ -102,6 +102,6 @@ class CartController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:cart_item_id, :card_id, :cart_id, :quantity, :zip_code, :country, :cart_id, :shipping_option_id)
+      params.require(:cart).permit(:cart_item_id, :card_id, :cart_id, :quantity, :zip_code, :country, :cart_id, :shipping_option_id, :state)
     end
 end

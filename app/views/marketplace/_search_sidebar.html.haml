@@ -74,6 +74,9 @@
           - else
             %input{:type => "checkbox" }
           %label #{season}-#{(season + 1)} (#{count})
+  %a#show-more-seasons{ href: '#', onclick: 'showMore("seasons"); return false;' } Show More
+  %a#show-less-seasons{ href: '#', onclick: 'showLess("seasons"); return false;' } Show Less
+  
   %h5 Sold
   - @available_options.each do |available_option|
     - checked = @search_params[:available_options] && @search_params[:available_options].include?(available_option.to_s)

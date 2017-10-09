@@ -15,7 +15,11 @@ class Cart < ActiveRecord::Base
   end
   
   def tax_pct
-    10
+    if self.state == 'CA'
+      Tax.first.tax
+    else
+      0
+    end
   end
 
   def paypal_items 

@@ -1,21 +1,23 @@
 .ui.form
   = form_for(:cart, url: "/cart/update", method: "post") do |f|
+    %h3.header Shipping To
+      
+    .two.fields
+      .field
+        %label State
+        = select_tag 'cart[state]', options_for_select(us_states, @cart.state), id: 'shipping_state'
+         
+
+    .ui.divider
+
+    
+    %h3.header Shipping Options
+    
     = flash[:notice]
     
     = f.hidden_field :cart_id, value: @cart.id
     = f.hidden_field :country, value: 'US'
     
-    /- if @cart.zip_code_set?
-    /  %b Shipping To: #{@cart.country} #{@cart.zip_code}
-    /  = f.hidden_field :zip_code, value: @cart.zip_code
-    /  %button.ui.button.inline.small{ onclick: '$("#cart_zip_code").val("");' } Change
-    /- else
-    /  %p To get shipping information and estimated delivery times, please specify your location.
-    /  = f.label :zip_code, 'Zip/Postal Code:'
-    /  = f.text_field :zip_code
-    /  = f.submit 'Get Shipping Rates', class: 'ui button blue'
-
-      
     - @shipping_options.each do |shipping|
       .field
         .ui.radio.checkbox

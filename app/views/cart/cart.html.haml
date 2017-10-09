@@ -9,8 +9,10 @@
 - else
 
   .ui.divider
+
+  /%h3.header Shipping To
+  /= render 'shipping_address'
   
-  %h3.header Shipping Options
   = render 'shipping_options'
   
   .ui.divider
@@ -44,6 +46,10 @@
       onChange: function(){
         this.form.submit();
       }
+    });
+    
+    $("#shipping_state").change(function(){
+      this.form.submit();
     });
     
   });
