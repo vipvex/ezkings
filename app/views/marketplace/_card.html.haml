@@ -1,4 +1,4 @@
-=link_to card, class: 'ui card' do |c|
+= link_to card, class: 'ui card' do |c|
   = cl_image_tag card.front_image_url, alt: card.name, title: card.description, class: 'ui image' if card.front_image_url
   = image_tag 'card_placeholder.jpg', class: 'ui image' unless card.front_image_url
   .content
@@ -11,15 +11,3 @@
     .ui.centered
       %span{ style: 'font-weight: bold; color: #662d91;' } $#{card.price} 
       %span (#{card.available} Available)
-      
-
-  /.ui.two.bottom.attached.buttons
-  /  = link_to card, class: 'ui button' do |c|
-  /    %i.unhide.icon
-  /    View
-  /  = link_to add_cart_item_path(cart: { card_id: card.id, quantity: 1 } ), method: :post, class: "ui primary button #{'disabled' unless card.available?}" do |c|
-  /    - if card.available?
-  /      /%i.add.icon
-  /      Buy $#{card.price}
-  /    - else
-  /      Out of Stock
